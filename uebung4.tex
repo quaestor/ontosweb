@@ -1,0 +1,140 @@
+% vim: set filetype=tex:
+\aufgabe{1}{Modellierung terminologischen Wissens}
+
+\newcommand{\defin}[2]{#1 $\sqsubseteq$ #2}
+\newcommand{\ando}{$\sqcap$\hspace{1pt}}
+\newcommand{\kripke}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\relation}[1]{\ensuremath{\mathcal{#1}}}
+
+Atomare Konzepte:
+\begin{itemize}
+	\item Album
+	\item Song
+	\item Genere, und diverse Subgenres
+	\item Single
+	\item Compilation
+\end{itemize}
+
+SuccessfulSong $\sqsubseteq$ Song 	$\sqcap$ $\exists$\hspace{1pt}appearsOn.Album
+									$\sqcap$ $\exists$\hspace{1pt}appearsOn.Single
+									$\sqcap$
+									$\exists$\hspace{1pt}appearsOn.Compilation\\
+
+SuccessfulArtist $\sqsubseteq$ Artist $\sqcap$
+$\exists$\hspace{1pt}hasWritten.successfulSong\\
+
+Artist $\sqsubseteq$ $\exists$\hspace{1pt}hasWritten.Song\\
+
+Was nicht geht:
+\begin{itemize}
+	\item Beschreiben, dass ein Artist Songs in versch. Genres geschrieben hat.
+	\item Zählen (z. B. eine Definition eines erfolgreichen Artists durch die
+		Anzahl der Veröffentlichungen)
+	\item \defin{BestOf}{Compilation \ando
+		$\forall$contains.$\forall$writtenBy.\{\textit{sameauthor}\}}
+	\item Selbstreferenzen
+\end{itemize}
+
+\aufgabe{2}{Verwendung von Werkzeugen}
+
+\aufgabe{3}{Schließen in Modallogik}
+Zz: Wenn der Label oberhalb des Regelstrichs gültig ist, so ist auch der Label
+unterhalb des Regelstrichs gültig.
+
+
+
+Es gilt: $\forall x \in M.\kripke{M},x\vDash \neg \phi_1,\dots,\neg \phi_n,\phi_0$
+Dies heißt, dass entweder \[\kripke{M},x \vDash \phi_0\] oder \[\kripke{M},x
+\nvDash \phi_0 \wedge \exists 0 < i \leq n.\kripke{M},x_j \nvDash \phi_i\] gelten muss.
+
+Wir wählen nun ein beliebiges, aber festes, $x$ und betrachten dessen
+Nachfolger:
+\begin{enumerate}
+	\item Für $x$ existiert kein Nachfolger, dann gilt trivialerweise für $x$
+		$\Box \phi_0$.
+	\item $x$ besitzt $k$ Nachfolger ($x_1, \dots, x_k$)
+		\begin{enumerate}
+			\item Wenn für alle Nachfolger $x_j$ ($j \in \{1, \dots, k\}$)
+				\kripke{M}, $x_j \vDash \phi_0$
+				Dann gilt:
+				\[\kripke{M}, x \vDash \Box \phi_0\]
+			\item Wenn für mindestens einen Nachfolger $x_j$ ($j \in \{1,
+				\dots,k\}$)\kripke{M},$x_j \nvDash \phi_0$ gilt $\exists 0 < i \leq n.\kripke{M},x_j \nvDash
+				\phi_i$, da für $x_j$ ebenfalls der Label oberhalb des
+				Regelstriches gültig ist. Damit existiert ein Nachfolger von
+				$x$, der nicht $\phi_i$ für ein $i$ erfüllt. Somit gilt $\neg
+				\Box \phi_i$.
+		\end{enumerate}
+\end{enumerate}
+Da $x$ beliebig ist die Behauptung korrekt.
+
+\aufgabe{4}{(Keine) Bisimilarität}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[->,>=stealth',shorten >=5pt, shorten <=5pt,auto,node distance=1.5cm,
+  main node/.style={circle,inner sep=2pt,minimum size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries,label=east:P},
+  not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=east:¬P}]
+
+  \node[main node,label=west:$x_1$] (1) {};
+  \node[main node,label=west:$x_2$] (2) [below of=1] {};
+  \node[main node,label=west:$x_{31}$] (3) [below left of=2] {};
+  \node[not main node,label=west:$x_{32}$] (4) [below right of=2] {};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [right] {} (2)
+
+	(2) edge node [right] {} (3)
+        edge node [right] {} (4);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[->,>=stealth',shorten >=5pt, shorten <=5pt,auto,node distance=1.5cm,
+  main node/.style={circle,inner sep=2pt,minimum size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries,label=0:P},
+  not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=0:¬P}]
+
+  \node[main node,label=west:$y_1$] (1) {};
+  \node[main node,label=west:$y_{21}$] (2) [below left of=1] {};
+  \node[main node,label=west:$y_{31}$] (3) [below of=2] {};
+  \node[main node,label=west:$y_{22}$] (4) [below right of=1] {};
+  \node[not main node,label=west:$y_{32}$] (5) [below of=4] {};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [right] {} (2)
+		edge node [left]  {} (4)
+	(2) edge node [right] {} (3)
+	(4) edge node [right] {} (5);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+Gegeben sind die beiden baumförmigen Kripkemodelle \kripke{M} (links) und
+\kripke{N} (rechts).
+Diese sind bisimilar, wenn eine Relation $S \subseteq M \times N$ existiert und
+diese sowie ihre Umkehrrelation $S^-$ Simulationen sind.
+
+Zunächst zeigen wir, dass eine solche Relation $S$ nur existieren kann, wenn
+$x_1 S y_1$ gilt. Gilt nämlich oBdA. $x_1 S y_i, i \neq 1$ dann folgt durch
+Betrachtung der Nachfolger, wie nach Definitionsteil (ii), dass auf der rechten
+Seite nicht ausrechend Nachfolger vorhanden sind.
+
+Beweisführung durch Überprüfung der Definition von Simulation:
+
+Nicht Modal:
+
+Es gilt: $\kripke{M}, x_1 \vDash P$ und $\kripke{N},y_1 \vDash P$ (i). Für alle
+Nachfolger von $x_1$, $x_2$, muss nun gelten: $\exists w.y_1 R w \wedge x_2 S w$
+(ii).
+\begin{enumerate}
+	\item $w = y_{21}$ erfüllt diese Bedingung, da in beiden Punkten $P$ gilt.
+		Überprüfe nun erneut (ii) bei dem Nachfolger $x_{32}$ von $x_2$. Nach
+		Definition muss wiederum gelten: $\exists w'.y_{21} R w' \wedge x_{32} S
+		w'$. Im Modell \kripke{N} kann nur $w' = y_{31}$ gelten. Damit ist $S$
+		keine Simulation, da $\kripke{M}, x_{32} \nvDash P$ und $\kripke{N},
+		y_{32} \vDash P$
+	\item Für $w = y_{22}$ ist der Beweis analog bei Wahl Nachfolger $x_{31}$
+		von $x_2$.
+\end{enumerate}
+
+Im modalen Fall erfolgt der Beweis analog mithilfe des
+Bisimulationsinvarianzsatzes, wenn $P$ eine modale Formel ist.
+

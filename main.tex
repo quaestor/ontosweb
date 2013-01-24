@@ -1,0 +1,153 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\usepackage{fullpage}
+\usepackage[ngerman]{babel}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+\usetikzlibrary{calc}
+\usetikzlibrary{shadows}
+\usetikzlibrary{matrix}
+\usetikzlibrary{automata}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{dsfont}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{color}
+%\usepackage{scrpage2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[math,light]{anttor}
+\usepackage{textcomp}
+\usepackage{etoolbox}
+\usepackage{bussproofs}
+
+% Pretty captions!
+%\usepackage{caption}
+%\DeclareCaptionFont{white}{\color{white}}
+%\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{0.98\linewidth}{#1#2#3}}}
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+% Colours
+\definecolor{Golden}{RGB}{255,208,115}
+
+% Pretty page headings!
+\pagestyle{fancy}
+\addtolength{\voffset}{-1.8cm}
+\fancyhf{}% sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{1.5cm}
+\setlength{\textheight}{23cm}
+\setlength{\headsep}{1.5cm}
+
+\lhead{
+Ulrich Dorsch\\
+Christoph Rauch
+}
+\rhead{
+$\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
+Übungsblatt 1
+}
+\chead{
+\begin{tikzpicture}[remember picture,overlay]
+ \coordinate (a) at ($(current page.north west) - (-2cm,2.5cm)$);
+ \coordinate (b) at ($(a) + (4cm,0)$);
+ \coordinate (c) at ($(current page.north east) - (2cm,2.5cm)$);
+ \coordinate (d) at ($(c) - (3.2cm,0)$);
+ \draw[black]
+ decorate [decoration={random steps,segment length=3pt,amplitude=1pt}] %
+ {(a) -- (b)}%
+ decorate [decoration={random steps,segment length=5pt,amplitude=4pt}] %
+ {-- (b) -- (d)}%
+ decorate [decoration={random steps,segment length=3pt,amplitude=1pt}] %
+ {-- (d) -- (c)};%
+\end{tikzpicture}
+}
+\rfoot{\pagemark}
+
+\makeatletter
+% Different format for headings
+\def\section{\@startsection{section}{1}%
+  \z@{.7\baselineskip\@plus\baselineskip}{.5\baselineskip}%
+  {\normalfont\Large\scshape\centering}}
+% This does spacing around caption.
+\setlength{\abovecaptionskip}{0.5em}
+\setlength{\belowcaptionskip}{0.5em}
+% This does justification (left) of caption.
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{#2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\box\@tempboxa\hfill}%
+  \fi
+  \vskip\belowcaptionskip}
+\providerobustcmd*{\bigcupdot}{%
+  \mathop{%
+    \mathpalette\bigop@dot\bigcup
+  }%
+}
+\newrobustcmd*{\bigop@dot}[2]{%
+  \setbox0=\hbox{$\m@th#1#2$}%
+  \vbox{%
+    \lineskiplimit=\maxdimen
+    \lineskip=-0.7\dimexpr\ht0+\dp0\relax
+    \ialign{%
+      \hfil##\hfil\cr
+      $\m@th\cdot$\cr
+      \box0\cr
+    }%
+  }%
+}
+\makeatother
+
+\setkomafont{title}{\normalfont}
+\setkomafont{pageheadfoot}{\normalfont}
+\setkomafont{pagenumber}{\normalfont\scshape}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+\widowpenalty=300
+\clubpenalty=300
+
+\floatname{algorithm}{Algorithmus}
+\newcommand{\algorithmautorefname}{Algorithmus}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\newcommand{\cm}[1]{\textcolor{magenta}{#1}}
+
+\newcommand{\aufgabe}[2]{
+    \newpage
+    \section*{Aufgabe #1 -- #2}
+    \addcontentsline{toc}{subsection}{Aufgabe #1 -- #2}}
+
+\newcommand{\angabe}[1]{\begin{center}
+	\colorbox{Golden}{\begin{minipage}%
+	{0.95\textwidth}#1\end{minipage}}%
+	\end{center}\vspace{0.5cm}}
+
+\author{Ulrich Dorsch, Christoph Rauch}
+
+\title{Ontologien im Semantic Web\\
+       Wintersemester 2012/13 \\
+       \small Übungsaufgaben}
+
+\begin{document}
+%\maketitle
+%\tableofcontents
+%\include{uebung1}
+%\include{uebung2}
+%\include{uebung3}
+%\include{uebung4}
+\include{uebung5}
+\end{document}

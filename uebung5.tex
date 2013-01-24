@@ -1,0 +1,184 @@
+% vim: set filetype=tex:
+\newcommand{\defin}[2]{#1 $\sqsubseteq$ #2}
+\newcommand{\ando}{$\sqcap$\hspace{1pt}}
+\newcommand{\kripke}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\relation}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\dia}{\lozenge}
+
+\aufgabe{1}{Modellierung terminologischen Wissens}
+
+\angabe{%
+Verwenden Sie den Tableaukalkül, um folgende Formeln auf Erfüllbarkeit zu prüfen:
+\begin{equation*}
+\Box(\dia p) \wedge \Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box ((q \vee r) \rightarrow{} \neg p)
+\wedge \Box (\neg p \rightarrow{} \Box \neg p)
+\label{erfbar1}
+\end{equation*}
+}
+
+Anwendung der Tableau-Regeln für modale Formeln auf modale Formeln.
+
+\begin{equation}
+\Box(\dia p) \wedge \Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box ((q \vee r) \rightarrow{} \neg p)
+\wedge \Box (\neg p \rightarrow{} \Box \neg p)
+\label{erfbar1}
+\end{equation}
+
+\begin{center}
+% TODO stimmt die negation?
+$ \Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
+\wedge \Box (\neg\neg p \vee \Box \neg p) $
+
+$ \neg(\Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
+\wedge \Box (\neg\neg p \vee \Box \neg p)) $
+
+
+\end{center}
+
+\begin{equation}
+	\Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge (\dia p \vee \dia \neg p)
+	\wedge \Box(\neg p \rightarrow{} \Box \neg p) \wedge \Box \Box (p \wedge
+	\neg r)
+	\label{erfbar2}
+\end{equation}
+
+\begin{center}
+$ \Box(\neg p \vee (\dia q \vee \dia r)) \wedge (\dia p \vee \dia \neg p) \wedge
+\Box (\neg \neg p \vee \Box \neg p) \wedge \Box \Box (p \wedge \neg r) $
+
+% TODO: stimmt das so?
+$ \neg(\Box (\neg\neg p \wedge \neg(\dia q \vee \dia r)) \wedge (\neg\dia p
+\wedge \neg\dia\neg p) \wedge \Box (\neg\neg\neg p \wedge \neg\Box\neg p) \wedge \Box\Box (p \wedge \neg r)) $
+
+$ \neg(\Box (\neg\neg p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge (\neg\dia p
+\wedge \neg\dia\neg p) \wedge \Box (\neg\neg\neg p \wedge \neg\Box\neg p) \wedge \Box\Box (p \wedge \neg r)) $
+\end{center}
+
+
+
+
+
+
+\aufgabe{2}{Große Modelle}
+\angabe{%
+Gegeben seien Atome $q_1,q_2,\dots$. Man definiere die Familie von Formeln
+$\phi_n$ durch
+\begin{equation*}
+\phi_n = \bigwedge^{n}_{i=0} \Box^i(\dia q_{i+1} \wedge \dia \neg
+q_{i+1}) \wedge \displaystyle \bigwedge_{i=1}^{n} \Box^i(\Box^{\leq n - i}((q_i
+\rightarrow \Box q_i) \wedge (\neg q_i \rightarrow{} \Box \neg q_i))).
+\label{bigmodel}
+\end{equation*}
+Zeigen Sie, dass jedes Modell von $\phi_n$ mindestens $2^n$ Elemente hat. Geben
+Sie eine polynomielle Abschätzung fúr die Größe von $\phi_n$ in Abhängigkeit
+von $n$ an.
+}
+
+Sei $\kripke{M}$ ein Modell für $\phi_n$, $x\in M$ mit $\kripke{M}, x \vDash
+\phi_n$. 
+
+Die erste Konjunktion in $\phi_n$ stellt sicher, dass jeder Punkt des
+Modells, der von $x$ in maximal $n$ Schritten erreichbar ist, mindestens zwei
+verschiedene Nachfolger besitzt.
+
+Durch die zweite Konjunktion wird ein Atom $q_i$ bzw. seine Negation $\neg q_i$
+von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolger propagiert. 
+
+\aufgabe{3}{Keine großen Modelle}
+
+\aufgabe{4}{Gegenseitige Simulation}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=5pt, shorten <=5pt,auto,node distance=1.5cm,
+  main node/.style={circle,inner sep=2pt,minimum size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
+  bnode/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=east:B},
+  cnode/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=east:C},
+  invnode/.style={circle,inner sep=2pt,minimum size=1pt,draw=white,font=\sffamily\Large\bfseries}
+  ]
+
+  \node[main node,label=west:$x_1$] (1) {};
+  \node[invnode] (3) [below of=1] {};
+  \node[main node,label=west:$x_21$] (2) [left of=3] {};
+  \node[main node,label=west:$x_22$] (4) [right of=3] {};
+  \node[bnode,label=west:$x_{31}$] (5) [below of=2] {};
+  \node[cnode,label=west:$x_{32}$] (6) [below of=3] {};
+  \node[cnode,label=west:$x_{33}$] (7) [below of=4] {};
+
+  % fuer einzelne pfeile, die unterschiedlich sind: edge [<->] node (zb)
+  \path[every node/.style={font=\sffamily\small}]
+	(1) edge node [right] {} (2)
+		edge node [right] {} (4)
+	(2) edge node [left] {} (5)
+        edge node [right] {} (6)
+	(4) edge node [left] {} (7);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[->,>=stealth',shorten >=5pt, shorten <=5pt,auto,node distance=1.5cm,
+  main node/.style={circle,inner sep=2pt,minimum size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
+  bnode/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=east:B},
+  cnode/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries,label=east:C},
+  invnode/.style={circle,inner sep=2pt,minimum size=1pt,draw=white,font=\sffamily\Large\bfseries}
+  ]
+
+
+  \node[main node,label=west:$y_1$] (1) {};
+  \node[invnode] (3) [below of=1] {};
+  \node[main node,label=west:$y_21$] (2) [left of=3] {};
+  \node[main node,label=west:$y_22$] (4) [right of=3] {};
+  \node[bnode,label=west:$y_{31}$] (5) [below of=2] {};
+  \node[cnode,label=west:$y_{32}$] (6) [below of=3] {};
+  \node[cnode,label=west:$y_{33}$] (7) [below of=4] {};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [right] {} (2)
+		edge node [right] {} (4)
+	(2) edge node [left] {} (5)
+        edge node [right] {} (6)
+	(4) edge node [left] {} (7);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+Gegeben sind die beiden baumförmigen Kripkemodelle \kripke{M} (links) und
+\kripke{N} (rechts).
+
+$\mathrm{Z\kern-0.4em\raise-0.4ex\hbox{Z}}$: Zwischen den Wurzeln ($\{x,y\}_1$)
+der beiden Modelle existiert in beiden Richtungen Simulationen, aber keine
+Bisimulation.
+
+Diese simulieren sich gegenseitig, wenn es sowohl eine Relation $S \subseteq M \times
+N$ und eine Relation $R \subseteq N \times M, (S \neq R)$ gibt und beide Relationen
+Simulationen sind.
+
+Zunächst zeigen wir, dass eine solche Relation $S(R)$ nur existieren kann, wenn
+$x_1 S(R) y_1$ gilt. Gilt nämlich oBdA. $x_1 S(R) y_i, i \neq 1$ dann folgt durch
+Betrachtung der Nachfolger, wie nach Definitionsteil (ii), dass auf der rechten
+Seite nicht ausrechend Nachfolger vorhanden sind.
+
+Beweisführung durch Überprüfung der Definition von Simulation:
+
+Nicht Modal:
+
+Es gilt: $\kripke{M}, x_1 \vDash P$ und $\kripke{N},y_1 \vDash P$ (i). Für alle
+Nachfolger von $x_1$, $x_2$, muss nun gelten: $\exists w.y_1 R w \wedge x_2 S w$
+(ii).
+\begin{enumerate}
+	\item $w = y_{21}$ erfüllt diese Bedingung, da in beiden Punkten $P$ gilt.
+		Überprüfe nun erneut (ii) bei dem Nachfolger $x_{32}$ von $x_2$. Nach
+		Definition muss wiederum gelten: $\exists w'.y_{21} R w' \wedge x_{32} S
+		w'$. Im Modell \kripke{N} kann nur $w' = y_{31}$ gelten. Damit ist $S$
+		keine Simulation, da $\kripke{M}, x_{32} \nvDash P$ und $\kripke{N},
+		y_{32} \vDash P$
+	\item Für $w = y_{22}$ ist der Beweis analog bei Wahl Nachfolger $x_{31}$
+		von $x_2$.
+\end{enumerate}
+
+Im modalen Fall erfolgt der Beweis analog mithilfe des
+Bisimulationsinvarianzsatzes, wenn $P$ eine modale Formel ist.
+

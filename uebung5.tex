@@ -15,42 +15,69 @@ Verwenden Sie den Tableaukalkül, um folgende Formeln auf Erfüllbarkeit zu prü
 \wedge \Box (\neg p \rightarrow{} \Box \neg p)
 \label{erfbar1}
 \end{equation*}
-}
-
-Anwendung der Tableau-Regeln für modale Formeln auf modale Formeln.
-
-\begin{equation}
-\Box(\dia p) \wedge \Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box ((q \vee r) \rightarrow{} \neg p)
-\wedge \Box (\neg p \rightarrow{} \Box \neg p)
-\label{erfbar1}
-\end{equation}
-
-\begin{center}
-% TODO stimmt die negation?
-$ \Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
-\wedge \Box (\neg\neg p \vee \Box \neg p) $
-
-$ \neg(\Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
-\wedge \Box (\neg\neg p \vee \Box \neg p)) $
-
-
-\end{center}
-
-\begin{equation}
+\begin{equation*}
 	\Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge (\dia p \vee \dia \neg p)
 	\wedge \Box(\neg p \rightarrow{} \Box \neg p) \wedge \Box \Box (p \wedge
 	\neg r)
 	\label{erfbar2}
-\end{equation}
+\end{equation*}
+}
+
+Anwendung der Tableau-Regeln für modale Formeln auf modale Formeln.
+
+\begin{prooftree}
+\AxiomC{$\Box(\dia p) \wedge \Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box ((q \vee r) \rightarrow{} \neg p)
+\wedge \Box (\neg p \rightarrow{} \Box \neg p)$}
+
+\UnaryInfC{$ \Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
+\wedge \Box (\neg\neg p \vee \Box \neg p) $}
+
+\UnaryInfC{$ \Box(\dia p) \wedge \Box(\neg p \vee \neg(\neg\dia q \wedge \neg\dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box (\neg\neg(\neg q \wedge \neg r) \vee \neg p)
+\wedge \Box \neg(\neg\neg\neg p \wedge \Box \neg\neg p) $}
+
+\UnaryInfC{$ \Box(\dia p) \wedge \Box\neg(\neg\neg p \wedge \neg\neg(\neg\dia q \wedge \neg\dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box \neg(\neg\neg\neg(\neg q \wedge \neg r)
+\wedge \neg\neg p) \wedge \Box \neg(\neg\neg\neg p \wedge \Box \neg\neg p) $}
+
+\UnaryInfC{$ \Box(\dia p) \wedge \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge
+\dia p \wedge \dia \neg p \wedge \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) \wedge \Box \neg(\neg p \wedge \Box  p) $}
+
+\UnaryInfC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\dia p , \dia \neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \Box \neg(\neg p \wedge \Box  p) $}
+
+\UnaryInfC{$ \Box(\Box\neg p) , \Box\neg(p \wedge (\neg\Box\neg q \wedge
+\neg\Box\neg r)) , \Box\neg p , \Box\neg \neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \Box \neg(\neg p \wedge \Box  p) $}
+
+\UnaryInfC{$ (\Box\neg p) , \neg(p \wedge (\neg\Box\neg q \wedge
+\neg\Box\neg r)) , \neg p , \neg \neg p ,  \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) ,  \neg(\neg p \wedge \Box  p) $}
+
+\UnaryInfC{$ (\Box\neg p) , \neg(p \wedge (\neg\Box\neg q \wedge
+\neg\Box\neg r)) , \neg p , \neg \neg p ,  \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) ,  \neg(\neg p \wedge \Box  p) $}
+
+
+
+\end{prooftree}
+
+
+
+
+
+
+
+
 
 \begin{center}
 $ \Box(\neg p \vee (\dia q \vee \dia r)) \wedge (\dia p \vee \dia \neg p) \wedge
 \Box (\neg \neg p \vee \Box \neg p) \wedge \Box \Box (p \wedge \neg r) $
 
-% TODO: stimmt das so?
 $ \neg(\Box (\neg\neg p \wedge \neg(\dia q \vee \dia r)) \wedge (\neg\dia p
 \wedge \neg\dia\neg p) \wedge \Box (\neg\neg\neg p \wedge \neg\Box\neg p) \wedge \Box\Box (p \wedge \neg r)) $
 
@@ -79,14 +106,14 @@ von $n$ an.
 }
 
 Sei $\kripke{M}$ ein Modell für $\phi_n$, $x\in M$ mit $\kripke{M}, x \vDash
-\phi_n$. 
+\phi_n$.
 
 Die erste Konjunktion in $\phi_n$ stellt sicher, dass jeder Punkt des
 Modells, der von $x$ in maximal $n$ Schritten erreichbar ist, mindestens zwei
 verschiedene Nachfolger besitzt.
 
 Durch die zweite Konjunktion wird ein Atom $q_i$ bzw. seine Negation $\neg q_i$
-von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolger propagiert. 
+von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolger propagiert.
 
 \aufgabe{3}{Keine großen Modelle}
 
@@ -103,8 +130,8 @@ von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolge
 
   \node[main node,label=west:$x_1$] (1) {};
   \node[invnode] (3) [below of=1] {};
-  \node[main node,label=west:$x_21$] (2) [left of=3] {};
-  \node[main node,label=west:$x_22$] (4) [right of=3] {};
+  \node[main node,label=west:$x_{21}$] (2) [left of=3] {};
+  \node[main node,label=west:$x_{22}$] (4) [right of=3] {};
   \node[bnode,label=west:$x_{31}$] (5) [below of=2] {};
   \node[cnode,label=west:$x_{32}$] (6) [below of=3] {};
   \node[cnode,label=west:$x_{33}$] (7) [below of=4] {};
@@ -113,9 +140,10 @@ von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolge
   \path[every node/.style={font=\sffamily\small}]
 	(1) edge node [right] {} (2)
 		edge node [right] {} (4)
-	(2) edge node [left] {} (5)
-        edge node [right] {} (6)
-	(4) edge node [left] {} (7);
+	(2) edge [<->] node [left] {} (5)
+		edge [out=-20,in=110] node [right] {} (6)
+	(4) edge [<->] node [left] {} (7)
+	(6) edge [out=150,in=-60] node [left] {} (2);
 \end{tikzpicture}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
@@ -129,18 +157,19 @@ von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolge
 
   \node[main node,label=west:$y_1$] (1) {};
   \node[invnode] (3) [below of=1] {};
-  \node[main node,label=west:$y_21$] (2) [left of=3] {};
-  \node[main node,label=west:$y_22$] (4) [right of=3] {};
+  \node[main node,label=west:$y_{21}$] (2) [left of=3] {};
+  \node[main node,label=west:$y_{22}$] (4) [right of=3] {};
   \node[bnode,label=west:$y_{31}$] (5) [below of=2] {};
   \node[cnode,label=west:$y_{32}$] (6) [below of=3] {};
-  \node[cnode,label=west:$y_{33}$] (7) [below of=4] {};
+  \node[bnode,label=west:$y_{33}$] (7) [below of=4] {};
 
   \path[every node/.style={font=\sffamily\small}]
-    (1) edge node [right] {} (2)
+	(1) edge node [right] {} (2)
 		edge node [right] {} (4)
-	(2) edge node [left] {} (5)
-        edge node [right] {} (6)
-	(4) edge node [left] {} (7);
+	(2) edge [<->] node [left] {} (5)
+		edge [out=-20,in=110] node [right] {} (6)
+	(4) edge [<->] node [left] {} (7)
+	(6) edge [out=150,in=-60] node [left] {} (2);
 \end{tikzpicture}
 \end{minipage}
 \end{center}

@@ -23,70 +23,76 @@ Verwenden Sie den Tableaukalkül, um folgende Formeln auf Erfüllbarkeit zu prü
 \end{equation*}
 }
 
-Anwendung der Tableau-Regeln für modale Formeln auf modale Formeln.
-
-\begin{prooftree}
-\AxiomC{$\Box(\dia p) \wedge \Box(p \rightarrow{} (\dia q \vee \dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box ((q \vee r) \rightarrow{} \neg p)
-\wedge \Box (\neg p \rightarrow{} \Box \neg p)$}
-
-\UnaryInfC{$ \Box(\dia p) \wedge \Box(\neg p \vee (\dia q \vee \dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box (\neg(q \vee r) \vee \neg p)
-\wedge \Box (\neg\neg p \vee \Box \neg p) $}
-
-\UnaryInfC{$ \Box(\dia p) \wedge \Box(\neg p \vee \neg(\neg\dia q \wedge \neg\dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box (\neg\neg(\neg q \wedge \neg r) \vee \neg p)
-\wedge \Box \neg(\neg\neg\neg p \wedge \Box \neg\neg p) $}
-
-\UnaryInfC{$ \Box(\dia p) \wedge \Box\neg(\neg\neg p \wedge \neg\neg(\neg\dia q \wedge \neg\dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box \neg(\neg\neg\neg(\neg q \wedge \neg r)
-\wedge \neg\neg p) \wedge \Box \neg(\neg\neg\neg p \wedge \Box \neg\neg p) $}
-
-\UnaryInfC{$ \Box(\dia p) \wedge \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge
-\dia p \wedge \dia \neg p \wedge \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) \wedge \Box \neg(\neg p \wedge \Box  p) $}
-
-\UnaryInfC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\dia p , \dia \neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \Box \neg(\neg p \wedge \Box  p) $}
-
-\UnaryInfC{$ \Box(\Box\neg p) , \Box\neg(p \wedge (\neg\Box\neg q \wedge
-\neg\Box\neg r)) , \Box\neg p , \Box\neg \neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \Box \neg(\neg p \wedge \Box  p) $}
-
-\UnaryInfC{$ (\Box\neg p) , \neg(p \wedge (\neg\Box\neg q \wedge
-\neg\Box\neg r)) , \neg p , \neg \neg p ,  \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) ,  \neg(\neg p \wedge \Box  p) $}
-
-\UnaryInfC{$ (\Box\neg p) , \neg(p \wedge (\neg\Box\neg q \wedge
-\neg\Box\neg r)) , \neg p , \neg \neg p ,  \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) ,  \neg(\neg p \wedge \Box  p) $}
-
-
-
-\end{prooftree}
-
-
-
-
-
-
-
-
-
+Durch Umformen der ersten gegebenen Formel erhalten wir die folgende vereinfachte
+Formel:
 \begin{center}
-$ \Box(\neg p \vee (\dia q \vee \dia r)) \wedge (\dia p \vee \dia \neg p) \wedge
-\Box (\neg \neg p \vee \Box \neg p) \wedge \Box \Box (p \wedge \neg r) $
-
-$ \neg(\Box (\neg\neg p \wedge \neg(\dia q \vee \dia r)) \wedge (\neg\dia p
-\wedge \neg\dia\neg p) \wedge \Box (\neg\neg\neg p \wedge \neg\Box\neg p) \wedge \Box\Box (p \wedge \neg r)) $
-
-$ \neg(\Box (\neg\neg p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge (\neg\dia p
-\wedge \neg\dia\neg p) \wedge \Box (\neg\neg\neg p \wedge \neg\Box\neg p) \wedge \Box\Box (p \wedge \neg r)) $
+$ \Box(\dia p) \wedge \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge
+\neg\Box p \wedge \neg\Box\neg p \wedge \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) \wedge \Box \neg(\neg p \wedge \neg\Box\neg  p) $
 \end{center}
 
+Ab jetzt lassen sich die bekannten Tableau-Regeln anwenden.
 
+\newcommand{\anm}[1]{\RightLabel{\scriptsize{#1}}}
 
+(Möglichkeit 1)
+\begin{prooftree}
+\AxiomC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\Box\neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \Box \neg(\neg p \wedge \neg\Box\neg  p) $}
+\anm{$(\neg\Box)$}
+
+\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
+\anm{$(\neg\Box)$}
+
+\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg p , \neg\neg p , \Box\neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
+\anm{$(\neg\neg)$}
+
+\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg p , p , \Box\neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
+\anm{clash}
+
+\UnaryInfC{$\bot$}
+\end{prooftree}
+
+(Möglichkeit 2)
+\begin{prooftree}
+\AxiomC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\Box\neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \Box \neg(\neg p \wedge \neg\Box\neg  p) $}
+\anm{$(\neg\Box)$}
+
+\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) ,  p$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
+\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
+\wedge  p) ,  \Box\neg  p $}
+\end{prooftree}
+
+Durch umformen der zweiten gegebenen Formel erhält man folgende einfache Formel:
+
+\begin{center}
+	$ \Box \neg(\neg p \wedge (\Box q \wedge \Box r)) \wedge \neg (\Box p \wedge
+	\Box\neg p) \wedge \Box \neg (\neg p \wedge \Box\neg p) \wedge \Box\Box(p
+	\wedge \neg r)$
+\end{center}
+
+Ab jetzt lassen sich die Tableau-Regeln anwenden.
 
 
 

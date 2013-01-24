@@ -101,7 +101,7 @@ q_{i+1}) \wedge \displaystyle \bigwedge_{i=1}^{n} \Box^i(\Box^{\leq n - i}((q_i
 \label{bigmodel}
 \end{equation*}
 Zeigen Sie, dass jedes Modell von $\phi_n$ mindestens $2^n$ Elemente hat. Geben
-Sie eine polynomielle Abschätzung fúr die Größe von $\phi_n$ in Abhängigkeit
+Sie eine polynomielle Abschätzung für die Größe von $\phi_n$ in Abhängigkeit
 von $n$ an.
 }
 
@@ -112,9 +112,26 @@ Die erste Konjunktion in $\phi_n$ stellt sicher, dass jeder Punkt des
 Modells, der von $x$ in maximal $n$ Schritten erreichbar ist, mindestens zwei
 verschiedene Nachfolger besitzt.
 
-Durch die zweite Konjunktion wird ein Atom $q_i$ bzw. seine Negation $\neg q_i$
-von einem Punkt, der von $x$ ausgehend in $i$ Schritten auf alle seine Nachfolger propagiert.
+Durch die zweite Konjunktion wird ein Atom $q_i$ (bzw. seine Negation $\neg q_i$)
+von einem Punkt $y$ der von $x$ ausgehend in mindestens $i$ und maximal $n$
+Schritten erreichbar ist auf alle seine Nachfolger propagiert; somit folgt,
+dass von $y$ ab alle erreichbaren Punkte $q_i$ (bzw. $\neg q_i$) erfüllen,
+solange sie nicht weiter als $n+1$ Schritte von $x$ entfernt sind.
 
+Dies bedeutet, dass von $x$ aus im $i$-ten Schritt entweder $q_i$ oder $\neg
+q_i$ gewählt werden kann und diese Wahl sich bis zum Schritt $n$ \glqq
+gemerkt\grqq wird; damit folgt, dass im $n$-ten Schritt für die $n$ Atome
+jeweils eine Wahl getroffen wurde, sodass diese Kombinationen jeweils paarweise
+verschieden sind (und nicht gleichzeitig an einem Punkt in einem Kripkemodell
+gelten können). Die Anzahl dieser Kombinationen ist $2^n$. Damit folgt, dass
+jedes Modell von $\phi_n$ mindestens $2^n$ Elemente hat.
+
+Abschätzung der Größe von $\phi_n$:
+\[
+\sum_{i=0}^{n}(i + 4) + n + 1 + \sum_{i=1}^{n}\left(i + \left(\sum_{j=0}^{n-i}
+j + 7\right) + (n - i + 1) \right) + n = \frac{5+(65 n)}{6}+5 n^2+\frac{n^3}{6}
+\in \mathcal{O}(n^3)
+\]
 \aufgabe{3}{Keine großen Modelle}
 
 \aufgabe{4}{Gegenseitige Simulation}

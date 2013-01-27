@@ -143,7 +143,16 @@ j + 7\right) + (n - i + 1) \right) + n = \frac{5+(65 n)}{6}+5 n^2+\frac{n^3}{6}
 	und symmetrisch ist. Zeigen Sie, dass die Methode von Aufgabe~2 zur Widerlegung der polynomiellen
 	Modelleigenschaft fur $S5$ nicht anwendbar ist, weil die Formeln $\phi_n$ in solchen Rahmen nicht erfüllbar sind.}
 
-%% TODO: Aufgabe 3
+Sei $\kripke{M}$ ein Modell über S5 und $x \in M$ ein Punkt, der $\phi_1$ erfüllt. Aufgrund der ersten Konjunktion in
+$\phi_1$ für $i = 0$ muss es $y, z \in M$ geben mit $xRy$ und $xRz$, wobei o.E. $\kripke{M}, y \vDash p_1$ sowie
+$\kripke{M}, z \vDash \neg p_1$. Aus der Symmetrie der Relation $R$ folgt jedoch $yRx$ und wegen Transitivität auch
+$yRz$. Die zweite Konjunktion fordert jedoch für $i = 1$, dass jeder Nachfolger von $y$ (somit auch $z$) $p_1$ erfüllen
+muss. Dies führt zu einem Widerspruch, $\kripke{M}, x \not\vDash \phi_1$.
+
+Die oben geschilderten Bedingungen müssen auch für alle $n$ mit $n > 1$ gelten. Folglich ist kein $\phi_n$, $n > 1$ über
+S5 erfüllbar.
+
+Eine Ausnahme bildet $\phi_0$, da hier die zweite Konjunktion leer ist.
 
 \aufgabe{4}{Gegenseitige Simulation}
 \angabe{Zeigen Sie, dass zwischen den Wurzeln der beiden Modelle in beiden Richtungen Simulationen existieren,
@@ -205,14 +214,14 @@ aber keine Bisiumulation.}
 \end{minipage}
 \end{center}
 
-Für die Existenz von Simulationen sowie die Nichtexistenz von Bisimulation reicht es
+Für die Existenz von Simulationen sowie die Nichtexistenz von Bisimulation reicht es,
 lediglich Beispiele anzugeben.
 
 \begin{enumerate}
 	\item Simulation von links nach rechts: $S = \{ (x_1,y_1), (x_{21}, y_{21}), (x_{22}, y_{21}), (x_{31}, y_{31}), (x_{32},  y_{32}), (x_{33}, y_{32}) \}$
 		Es ist leicht nachzuprüfen, dass dies eine Simulation ist.
 	\item Simulation von rechts nach links: $S = \{ (y_1,x_1), (y_{21}, x_{21}), (y_{22}, x_{21}), (y_{31}, x_{31}), (y_{32},  x_{32}), (y_{33}, x_{31}) \}$
-		Widerum ist leicht zu sehen, dass dies eine Simulation ist.
+		Wiederum ist leicht zu sehen, dass dies eine Simulation ist.
 	\item Bisimulation: Die Formel $\Box \dia B$ wird an der Wurzel im rechten Modell erfüllt, nicht jedoch im linken Modell.
 \end{enumerate}
 

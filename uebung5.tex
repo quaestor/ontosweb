@@ -3,9 +3,9 @@
 \newcommand{\ando}{$\sqcap$\hspace{1pt}}
 \newcommand{\kripke}[1]{\ensuremath{\mathcal{#1}}}
 \newcommand{\relation}[1]{\ensuremath{\mathcal{#1}}}
-\newcommand{\dia}{\lozenge}
+\newcommand{\dia}{\Diamond}
 
-\aufgabe{1}{Modellierung terminologischen Wissens}
+\aufgabe{1}{Anwendung des Tableaukalküls}
 
 \angabe{%
 Verwenden Sie den Tableaukalkül, um folgende Formeln auf Erfüllbarkeit zu prüfen:
@@ -22,68 +22,47 @@ Verwenden Sie den Tableaukalkül, um folgende Formeln auf Erfüllbarkeit zu prü
 	\label{erfbar2}
 \end{equation*}
 }
+%%1. Formel
+Die erste Formel sei verkürzt wie folgt dargestellt (nach Anwedung von Umformungsregeln
+für Implikation, Diamond und De Morgan'sche Regel, sowie Anwendung der
+$(\wedge)$-Regel auf oberster Ebene sowie $(\neg \neg)$-Regel des Kalküls); anschließend
+wird der Kalkül wie farbig markiert durchgeführt.
 
-Durch Umformen der ersten gegebenen Formel erhalten wir die folgende vereinfachte
-Formel:
-\begin{center}
-$ \Box(\dia p) \wedge \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) \wedge
-\neg\Box p \wedge \neg\Box\neg p \wedge \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) \wedge \Box \neg(\neg p \wedge \neg\Box\neg  p) $
-\end{center}
-
-Ab jetzt lassen sich die bekannten Tableau-Regeln anwenden.
-
-\newcommand{\anm}[1]{\RightLabel{\scriptsize{#1}}}
-
-(Möglichkeit 1)
+\[\Box(\dia p)
+	\wedge \Box \underbrace{(p \rightarrow{} (\dia q \vee \dia r))}_{\coloneqq \phi}
+\wedge \dia p
+\wedge \dia \neg p
+\wedge \Box \underbrace{\Box ((q \vee r) \rightarrow{} \neg p)}_{\coloneqq \psi}
+\wedge \Box (\neg p \rightarrow{} \Box \neg p) \]
 \begin{prooftree}
-\AxiomC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\Box\neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \Box \neg(\neg p \wedge \neg\Box\neg  p) $}
-\anm{$(\neg\Box)$}
+	\AxiomC{$ \Box \neg \Box \neg p,
+	\Box \phi,
+	\neg \Box \neg p,
+	\cm{\neg \Box p,}
+	\Box \psi,
+\Box \neg ( \neg p \wedge \neg \Box \neg p) $}
+\anm{$(\neg \Box)$}
+\UnaryInfC{$\neg \Box \neg p,
+	\phi,
+	\neg p,
+	\psi,
+\cm{\neg ( \neg p \wedge \neg \Box \neg p)} $}
+\anm{$(\neg \wedge)$}
 
-\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
-\anm{$(\neg\Box)$}
-
-\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg p , \neg\neg p , \Box\neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
-\anm{$(\neg\neg)$}
-
-\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg p , p , \Box\neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
-\anm{clash}
-
-\UnaryInfC{$\bot$}
+\UnaryInfC{$
+	\neg \Box \neg p, \phi, \cm{\neg p}, \psi, \cm{\neg \neg p} \quad | \quad
+\cm{\neg \Box \neg p}, \phi, \neg p, \psi, \cm{\neg \neg \Box \neg p} $}
+\anm{$(clash)$}
+		\UnaryInfC{$\bot$}
 \end{prooftree}
 
-(Möglichkeit 2)
-\begin{prooftree}
-\AxiomC{$ \Box(\dia p) , \Box\neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\Box\neg p , \Box \Box \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \Box \neg(\neg p \wedge \neg\Box\neg  p) $}
-\anm{$(\neg\Box)$}
+Im letzten Schritt lässt sich auf beide möglichen Resultate der Anwendung der
+$(\neg \wedge)$ Regel sofort die $(clash)$-Regel anwenden.
 
-\UnaryInfC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) , \neg(\neg p \wedge \neg\Box\neg  p) $}
-\end{prooftree}
+Da für jede Regelanwendung eine erfolgreiche Konklusion existieren muss
+damit ein Label erfolgreich ist, ist dieser Label nicht erfolgreich.
 
-\begin{prooftree}
-\AxiomC{$ \dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) ,  p$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$\dia p , \neg(p \wedge (\neg\dia q \wedge \neg\dia r)) ,
-\neg\Box p , \neg\neg p , \neg(\neg(\neg q \wedge \neg r)
-\wedge  p) ,  \Box\neg  p $}
-\end{prooftree}
-
+%%2. Formel
 Durch umformen der zweiten gegebenen Formel erhält man folgende einfache Formel:
 
 \begin{center}
@@ -93,6 +72,7 @@ Durch umformen der zweiten gegebenen Formel erhält man folgende einfache Formel
 \end{center}
 
 Ab jetzt lassen sich die Tableau-Regeln anwenden.
+
 
 
 

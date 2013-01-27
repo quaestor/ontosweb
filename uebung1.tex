@@ -1,0 +1,170 @@
+\aufgabe{1}{Tableaux-Algorithmus}
+\vspace{-2em}
+\begin{align*}
+  \varphi & = \left( (A \wedge B) \to \neg C \right) \wedge (\neg A \to C) \wedge (\neg B \to C) \wedge
+        \neg (B \to \neg C)
+\intertext{… Auflösen der Implikationen …}
+    & = \left( \neg (A \wedge B) \vee \neg C \right) \wedge (\neg \neg A \vee C) \wedge (\neg \neg B \vee C)
+        \wedge \neg (\neg B \vee \neg C) \\ 
+\intertext{… und der Disjunktionen sowie der doppelten Negationen …}
+    & = \neg \left( A \wedge B \wedge C \right) \wedge \neg (\neg A \wedge \neg C) \wedge \neg (\neg B \wedge \neg C)
+        \wedge (B \wedge C)
+\end{align*}
+Aus der ersten und letzten Klammer ergibt sich in dieser Form offensichtlich, dass für eine erfüllende Belegung $A =
+\bot, B = \top, C = \top$ gelten muss. Nach Überprüfung der restlichen Terme erhält man kurzerhand das Ergebnis, dass
+\[
+  \kappa : \mathcal{A} \to \mathbf{2} : A \mapsto \bot, \ B \mapsto \top, \ C \mapsto \top
+\]
+die Formel erfüllt. Der Tableaux-Algorithmus sollte uns im Folgenden also dasselbe berichten:
+
+\begin{gather*}
+    \big\{ \neg \left( A \wedge B \wedge C \right) \cm{\wedge} \neg (\neg A \wedge \neg C) \cm{\wedge} \neg (\neg B
+          \wedge \neg C) \cm{\wedge} B \cm{\wedge} C \big\} \\
+\intertext{… Regel $(\wedge)$ für alle $\wedge$-Konnektive auf oberster Ebene …}
+    \big\{ \cm{\neg} \left( \cm{A} \wedge (B \wedge C) \right), \neg (\neg A \wedge \neg C), \neg (\neg B \wedge \neg
+          C), B, C \big\} \\
+\intertext{… Regel $(\neg\wedge)$ auf erstes Element (linke Seite gewählt) …}
+    \big\{ \neg A, \cm{\neg} (\neg A \wedge \cm{\neg C}), \neg (\neg B \wedge \neg C), B, C \big\} \\
+\intertext{… Regel $(\neg\wedge)$ auf zweites Element (rechte Seite gewählt) …}
+    \big\{ \neg A, \cm{\neg \neg C}, \neg (\neg B \wedge \neg C), B, C \big\} \\
+\intertext{… Regel $(\neg\neg)$ auf zweites Element …}
+    \big\{ \neg A, C, \cm{\neg} (\cm{\neg B} \wedge \neg C), B, C \big\} \\
+\intertext{… Regel $(\neg\wedge)$ auf drittes Element (linke Seite gewählt) …}
+    \big\{ \neg A, C, \cm{\neg \neg B}, B \big\} \\
+\intertext{… Regel $(\neg\neg)$ auf drittes Element …}
+    \big\{ \neg A, C, B \big\}
+\end{gather*}
+Hier ist keine Regel mehr anwendbar, die Formel wird wie erwartet als erfüllbar erkannt mit oben beschriebener
+Wahrheitsbelegung.
+\aufgabe{2}{Resolution}
+\vspace{-2em}
+\[
+ \varphi = \big\{ \{\neg D, A, B\}, \{C, B, \neg A\}, \{\neg D, B\}, \{\neg B, A\}, \{D, C\}, \{\neg C, B, \neg A\},
+            \{D, B, \neg C\}, \{\neg B, \neg A\} \big\}
+\]
+Aus der vierten und der letzten Klausel lässt sich sofort
+\begin{prooftree}
+    \AxiomC{$\{\neg B, \cm{A}\}$}
+    \AxiomC{$\{\neg B, \cm{\neg A}\}$}
+    \BinaryInfC{$\{\neg B\}$}
+\end{prooftree}
+resolvieren. Ebenso erhält man durch die dritte und fünfte Klausel
+\begin{prooftree}
+        \AxiomC{$\{\cm{\neg D}, B\}$}
+        \AxiomC{$\{\cm{D}, C\}$}
+    \BinaryInfC{$\{B, C\}$}
+\end{prooftree}
+Desweiteren kann man durch eine Folge von Anwendungen der Resolutionsregel folgende Klauseln erzeugen:
+\begin{prooftree}
+        \AxiomC{$\{\cm{\neg D}, A, B\}$}
+        \AxiomC{$\{\cm{D}, B, \neg C\}$}
+    \RightLabel{\scriptsize{1 und 7}}
+    \BinaryInfC{$\{A, B, \neg C\}$}
+\end{prooftree}
+sowie
+\begin{prooftree}
+    \AxiomC{$\{\neg D, \cm{A}, B\}$}
+    \AxiomC{$\{\neg C, B, \cm{\neg A}\}$}
+    \RightLabel{\scriptsize{1 und 6}}
+    \BinaryInfC{$\{\neg D, B, \neg C\}$}
+    \AxiomC{$\{D, \cm{B}, \neg C\}$}
+    \AxiomC{$\{\cm{\neg B}, \neg A\}$}
+    \RightLabel{\scriptsize{7 und 8}}
+    \BinaryInfC{$\{D, \neg C, \neg A\}$}
+\BinaryInfC{$\{\neg A, B, \neg C\}$}
+\end{prooftree}
+Resolviert man diese nun in umgekehrter Reihenfolge, so ergibt sich die leere Klausel. Die Formel ist folglich
+unerfüllbar.
+
+\vspace{2em}
+
+Nun soll noch der Algorithmus DPLL auf dieselbe Formel angewendet werden. Dazu wählen wir zuerst die Variable $B$. Im
+Falle $B = \top$ wird $\varphi / B$ untersucht:
+\[
+  \varphi / B = \big\{ \{\cm{A}\}, \{D, C\}, \{\cm{\neg A}\} \big\}
+\]
+Anwenden der Optimierungsmethode \emph{Unit Propagation} ($\{A\} \in \varphi \Rightarrow \varphi := \varphi / A$)
+liefert sofort die leere Klausel. Es muss also mit \emph{Backtracking} der zweite Fall, $B = \bot$, untersucht werden:
+\[
+  \varphi := \varphi / \neg B = \big\{ \{\neg D, A\}, \{C, \neg A\}, \{\cm{\neg D}\}, \{D, C\}, \{\neg C, \neg A\},
+  \{D, \neg C\}, \{\neg A\} \big\}
+\]
+Der nächste Schritt im Algorithmus ist erneut die \emph{Unit Propagation}, dieses Mal mit dem Literal $\neg D$
+\[
+  \varphi := \varphi / \neg D = \big\{ \{C, \neg A\}, \{\cm{C}\}, \{\neg C, \neg A\}, \{\cm{\neg C}\}, \{\neg A\} \big\}
+\]
+Nach einer weiteren \emph{Unit Propagation} ergibt sich auch hier die leere Klausel. Der Algorithmus bricht ab, die
+Formel ist nicht erfüllbar.
+
+\aufgabe{3}{Maximale konsistente CNF}
+
+\begin{enumerate}
+    \item Da Maximalität von konsistenten CNF über die Teilmengenrelation definiert ist, also 
+          \[
+            \phi \text{ maximal konsistent } \Leftrightarrow \forall \psi\ .\ \phi \subseteq \psi \Rightarrow \psi = \phi,
+          \]
+          ist jede konsistente CNF Teilmenge einer maximal konsistenten CNF: Die Menge der konsistenten CNF ist
+          endlich und da auf den konsistenten CNF mittels der Teilmengenrelation eine partielle Ordnung definiert
+          wird, existiert für alle Teilmengen von miteinander vergleichbaren konsistenten CNF (im Sinne der
+          Teilmengenrelation) ein Maximum.
+    \item
+        \begin{enumerate}
+                \item Hier gilt es zum einen, zu zeigen, dass \emph{jedes} Literal $A$ aus $\mathcal{A}$ (entweder
+                positiv oder negativ) als Klausel $\{A\}$ oder $\{\neg A\}$ in $\phi$ vorkommt und zum anderen, dass
+                nicht beide Klauseln zugleich vorkommen können:
+
+                Annahme: $\{A\}, \{\neg A\} \not\in \phi$ und $\phi$ maximal. Wird nun o.B.d.A.\ $\{A\}$ zur
+                Klauselmenge $\phi$ hinzugefügt, so ändert dies nichts an der Konsistenz der CNF, da für Klauseln C
+                folgt:
+                \begin{itemize}
+                        \item[]$A \in C$: Resolution mit $\{A\}$ nicht möglich
+                        \item[]$\neg A \in C$: Resolution mit $\{A\}$ liefert $D := C \setminus \{\neg A\}$.
+                                Angenommen, $D$ ließe sich nun zur leeren Klausel resolvieren, dann ließe sich $C$ zu
+                                $\{\neg A\}$ resolvieren, was im Widerspruch zur Annahme steht. Daher muss $\phi$ unter
+                                Hinzunahme von $D$ und $\{A\}$ konsistent bleiben.
+                        \item[]$A, \neg A \not \in C$: Resolution mit $\{A\}$ nicht möglich.
+                \end{itemize}
+                Da in jedem dieser Fälle $\{A\}$ hinzugefügt werden konnte, kann $\phi$ nicht maximal sein. Es muss
+                also $\{A\}$ oder $\{\neg A\}$ in $\phi$ enthalten sein.
+
+                Annahme: $\{A\} \in \phi, \{\neg A\} \in \phi$: dann lassen sich diese beiden Klauseln zur leeren
+                Klausel resolvieren und $\phi$ ist nicht konsistent.
+
+                Damit gilt die Behauptung.
+
+                \item Sei $\phi$ maximal konsistent und nicht resolutionsabgeschlossen. Dann kann durch Resolution eine
+                weitere Klausel hinzugefügt werden, was der Annahme widerspricht, dass $\phi$ maximal ist.
+
+                \item Erweitert man eine Klausel $C \in \phi$ um eine beliebige Menge von Literalen $X$, so gilt: da $C$
+                sich nicht auf die leere Klausel resolvieren lässt (Konsistenz), kann $C \cup X$ nicht auf $X$
+                resolviert werden, da immer ein Teil von $C$ bei der Resolution übrig bleibt. Damit kann $C \cup X$
+                auch nicht zur leeren Klausel resolviert werden und auch keine andere Klausel durch Resolution mit $C
+                \cup X$ und $\phi \cup \{C \cup X\}$ ist konsistent.
+
+                \item Die Richtung \glqq$\Leftarrow$\grqq\ sofort aus c), da sowohl $C$ als auch $D$ Teilmengen von $C
+                \cup D$ sind.
+
+                \glqq$\Rightarrow$\grqq: angenommen $C \cup D \in \phi, C \not\in \phi, D \not\in \phi,\ \phi$ maximal
+                konsistent. Dann ist $\phi\,\cup \{C\}$ nicht konsistent, d.h. $C$ führt durch Resolution zur leeren
+                Menge. Dies bedeutet jedoch für $\phi$, dass $C \cup D$ dort zu $(C \cup D) \setminus C$ (also einer
+                Teilmenge von $D$) resolviert werden kann. Nach c) ist damit $D$ in $\phi$, was im Widerspruch zur
+                Annahme steht.
+
+                \item Nach a) gilt für jedes $A \in \mathcal{A}$ entweder $\{A\} \in \phi$ oder $\{\neg A\} \in \phi$.
+                Die gegebene Belegung erfüllt all diese einelementigen Klauseln. Nach d) kann jede Klausel aus $\phi$
+                zerlegt werden in $C = D \cup E$, wobei mindestens eine der beiden Teilklauseln in $\phi$ ist. Durch
+                wiederholte Anwendung kann man so jede Klausel $C$ in eine Vereinigung von einelementigen Klauseln
+                unterteilen, von denen mindestens eine in $\phi$ und damit durch $\kappa$ erfüllbar ist und damit auch
+                $C$.
+        \end{enumerate}
+    \item Nach 2. e) existiert für jede maximale konsistente CNF eine erfüllende Belegung und nach 1. ist jede
+    konsistente CNF $\psi$ eine Teilmenge einer geeigneten maximalen konsistenten CNF $\phi$. Damit gilt $\kappa_{\psi}
+    = \kappa_{\phi}$, da $\phi$ alle Klauseln von $\psi$ enthält.
+\end{enumerate}
+\vfill
+\begin{figure}[!ht]
+\centering
+\includegraphics[height=16cm]{ontorab.jpg}\\
+{\small Ontology of a Rabbit \textcopyright 2012 Kit Lang}
+\end{figure}
+\vfill

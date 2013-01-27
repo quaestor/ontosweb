@@ -1,0 +1,999 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www8.cs.fau.de/ontosweb/music#"
+     xml:base="http://www8.cs.fau.de/ontosweb/music"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www8.cs.fau.de/ontosweb/music"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#appearsOn -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#appearsOn"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#contains">
+        <owl:inverseOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#appearsOn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#hasGenre -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#hasGenre"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#hasWritten -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#hasWritten">
+        <owl:inverseOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#writtenBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#performedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#performedBy"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#writtenBy -->
+
+    <owl:ObjectProperty rdf:about="http://www8.cs.fau.de/ontosweb/music#writtenBy"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#20thCentury -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#20thCentury">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#21stCentury -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#21stCentury">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AfricanTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#AfricanTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Album -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AlternativeRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#AlternativeRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Ambient -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Ambient">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ArtMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ArtMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Genre"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Western classical music</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ArtRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ArtRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Artist -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Artist">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#hasWritten"/>
+                        <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#hasWritten"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#hasGenre"/>
+                                <owl:allValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AsianTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#AsianTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AustralianTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#AustralianTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Avant-Garde -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Avant-Garde">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Baroque -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Baroque">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#CommonPractice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Blues -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Blues">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Classical -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Classical">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#CommonPractice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ComedyMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ComedyMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#CommonPractice -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#CommonPractice">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Compilation -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Compilation"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Contemporary -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Contemporary">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Country -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Country">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#DrumAndBass -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#DrumAndBass">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#EarlyArtMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#EarlyArtMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#EarlyBaroque -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#EarlyBaroque">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#EarlyArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#EasyListening -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#EasyListening">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Electro -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Electro">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Electronic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Electronic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ElectronicRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ElectronicRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#EuropeanTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#EuropeanTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Genre -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Genre"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#HardRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#HardRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Hardcore -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Hardcore">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#HeavyMetal -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#HeavyMetal">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#HipHop -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#HipHop">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#House -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#House">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Industrial -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Industrial">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Jazz -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Jazz">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#LatinAmericanTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#LatinAmericanTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Medieval -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Medieval">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#EarlyArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Modern -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Modern">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ModernAndContemporary">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#ArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ModernFolk -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ModernFolk">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#NorthAmericanTraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#NorthAmericanTraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Other -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Other">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Pop -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Pop">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#PopularMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#PopularMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Post-Metal -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Post-Metal">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Post-Rock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Post-Rock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Progressive -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Progressive">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ProgressiveRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#ProgressiveRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#PsychedelicRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#PsychedelicRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#PunkRock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#PunkRock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Renaissance -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Renaissance">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#EarlyArtMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#RnB -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#RnB">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Rock -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Rock">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#PopularMusic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#RockAndRoll -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#RockAndRoll">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Romantic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Romantic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#CommonPractice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Single -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Single"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Song -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Song">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#hasGenre"/>
+                <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#Genre"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#SuccessfulArtist -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#SuccessfulArtist">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www8.cs.fau.de/ontosweb/music#Artist"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#hasWritten"/>
+                        <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#SuccessfulSong"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#SuccessfulSong -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#SuccessfulSong">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www8.cs.fau.de/ontosweb/music#Song"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#appearsOn"/>
+                        <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#appearsOn"/>
+                        <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#Compilation"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www8.cs.fau.de/ontosweb/music#appearsOn"/>
+                        <owl:someValuesFrom rdf:resource="http://www8.cs.fau.de/ontosweb/music#Single"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Techno -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Techno">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#TraditionalMusic -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#TraditionalMusic">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Trance -->
+
+    <owl:Class rdf:about="http://www8.cs.fau.de/ontosweb/music#Trance">
+        <rdfs:subClassOf rdf:resource="http://www8.cs.fau.de/ontosweb/music#Electronic"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#2MinutesToMidnight -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#2MinutesToMidnight">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#2MinutesToMidnight(Single)"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation)"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#Powerslave(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#2MinutesToMidnight(Single) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#2MinutesToMidnight(Single)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Single"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AFineDayToDie -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#AFineDayToDie">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Bathory"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Bathory"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#BlackMetal"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#BloodFireDeath(Album)"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Emperor"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#InTheNightsideEclipse(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AceOfSpades -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#AceOfSpades">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#AceOfSpades(Album)"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Motörhead"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Motörhead"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AceOfSpades(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#AceOfSpades(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#AngelOfDeath -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#AngelOfDeath">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#ReignInBlood(Album)"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Slayer"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Slayer"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#ThrashMetal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Bathory -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Bathory"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#BlackMetal -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#BlackMetal">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#BlackMetal(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#BlackMetal(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#BlackMetal(Song) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#BlackMetal(Song)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#BlackMetal"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#BlackMetal(Album)"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Venom"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Venom"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#BloodFireDeath(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#BloodFireDeath(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#DiamandaGalás -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#DiamandaGalás"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Compilation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Emperor -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Emperor"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ExperimentalMusic -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#ExperimentalMusic">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Avant-Garde"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#FlightOfIcarus -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#FlightOfIcarus">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#PieceOfMind(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#HallowedBeThyName -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#HallowedBeThyName">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation)"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#HeavyMetal -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#HeavyMetal">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#IAmTheBlackWizards -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#IAmTheBlackWizards">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#BlackMetal"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Emperor"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Emperor"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#InTheNightsideEclipse(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#InTheNightsideEclipse(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#InTheNightsideEclipse(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#IronMaiden -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Motörhead -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Motörhead"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#PieceOfMind(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#PieceOfMind(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Powerslave(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Powerslave(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#RainingBlood -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#RainingBlood">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#ReignInBlood(Album)"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Slayer"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#Slayer"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#ThrashMetal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ReignInBlood(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#ReignInBlood(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#RunToTheHills -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#RunToTheHills">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation)"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#RunToTheHills(Single)"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Album)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#RunToTheHills(Single) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#RunToTheHills(Single)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Single"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Slayer -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Slayer"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#TheLitaniesOfSatan(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#TheLitaniesOfSatan(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+        <rdfs:comment>The Homicidal Love Song for Solo Scream</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#EdwardTheGreat(Compilation)"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#IronMaiden"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Album)"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Single)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Album) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Album)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Album"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Single) -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#TheNumberOfTheBeast(Single)">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Single"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#ThrashMetal -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#ThrashMetal">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#HeavyMetal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#Venom -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#Venom"/>
+    
+
+
+    <!-- http://www8.cs.fau.de/ontosweb/music#WildWomenWithSteakKnives -->
+
+    <owl:NamedIndividual rdf:about="http://www8.cs.fau.de/ontosweb/music#WildWomenWithSteakKnives">
+        <rdf:type rdf:resource="http://www8.cs.fau.de/ontosweb/music#Song"/>
+        <performedBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#DiamandaGalás"/>
+        <writtenBy rdf:resource="http://www8.cs.fau.de/ontosweb/music#DiamandaGalás"/>
+        <hasGenre rdf:resource="http://www8.cs.fau.de/ontosweb/music#ExperimentalMusic"/>
+        <appearsOn rdf:resource="http://www8.cs.fau.de/ontosweb/music#TheLitaniesOfSatan(Album)"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+

@@ -139,8 +139,16 @@ j + 7\right) + (n - i + 1) \right) + n = \frac{5+(65 n)}{6}+5 n^2+\frac{n^3}{6}
 \in \mathcal{O}(n^3)
 \]
 \aufgabe{3}{Keine großen Modelle}
+\angabe{$S5$ bezeichne die Modallogik der Kripkerahmen, deren Zustandsübergangsrelation transitiv, reflexiv
+	und symmetrisch ist. Zeigen Sie, dass die Methode von Aufgabe~2 zur Widerlegung der polynomiellen
+	Modelleigenschaft fur $S5$ nicht anwendbar ist, weil die Formeln $\phi_n$ in solchen Rahmen nicht erfüllbar sind.}
+
+%% TODO: Aufgabe 3
 
 \aufgabe{4}{Gegenseitige Simulation}
+\angabe{Zeigen Sie, dass zwischen den Wurzeln der beiden Modelle in beiden Richtungen Simulationen existieren,
+aber keine Bisiumulation.}
+
 \begin{center}
 \begin{minipage}{0.4\textwidth}
 
@@ -197,40 +205,51 @@ j + 7\right) + (n - i + 1) \right) + n = \frac{5+(65 n)}{6}+5 n^2+\frac{n^3}{6}
 \end{minipage}
 \end{center}
 
-Gegeben sind die beiden baumförmigen Kripkemodelle \kripke{M} (links) und
-\kripke{N} (rechts).
+Für die Existenz von Simulationen sowie die Nichtexistenz von Bisimulation reicht es
+lediglich Beispiele anzugeben.
 
-$\mathrm{Z\kern-0.4em\raise-0.4ex\hbox{Z}}$: Zwischen den Wurzeln ($\{x,y\}_1$)
-der beiden Modelle existiert in beiden Richtungen Simulationen, aber keine
-Bisimulation.
-
-Diese simulieren sich gegenseitig, wenn es sowohl eine Relation $S \subseteq M \times
-N$ und eine Relation $R \subseteq N \times M, (S \neq R)$ gibt und beide Relationen
-Simulationen sind.
-
-Zunächst zeigen wir, dass eine solche Relation $S(R)$ nur existieren kann, wenn
-$x_1 S(R) y_1$ gilt. Gilt nämlich oBdA. $x_1 S(R) y_i, i \neq 1$ dann folgt durch
-Betrachtung der Nachfolger, wie nach Definitionsteil (ii), dass auf der rechten
-Seite nicht ausrechend Nachfolger vorhanden sind.
-
-Beweisführung durch Überprüfung der Definition von Simulation:
-
-Nicht Modal:
-
-Es gilt: $\kripke{M}, x_1 \vDash P$ und $\kripke{N},y_1 \vDash P$ (i). Für alle
-Nachfolger von $x_1$, $x_2$, muss nun gelten: $\exists w.y_1 R w \wedge x_2 S w$
-(ii).
 \begin{enumerate}
-	\item $w = y_{21}$ erfüllt diese Bedingung, da in beiden Punkten $P$ gilt.
-		Überprüfe nun erneut (ii) bei dem Nachfolger $x_{32}$ von $x_2$. Nach
-		Definition muss wiederum gelten: $\exists w'.y_{21} R w' \wedge x_{32} S
-		w'$. Im Modell \kripke{N} kann nur $w' = y_{31}$ gelten. Damit ist $S$
-		keine Simulation, da $\kripke{M}, x_{32} \nvDash P$ und $\kripke{N},
-		y_{32} \vDash P$
-	\item Für $w = y_{22}$ ist der Beweis analog bei Wahl Nachfolger $x_{31}$
-		von $x_2$.
+	\item Simulation von links nach rechts: $S = \{ (x_1,y_1), (x_{21}, y_{21}), (x_{22}, y_{21}), (x_{31}, y_{31}), (x_{32},  y_{32}), (x_{33}, y_{32}) \}$
+		Es ist leicht nachzuprüfen, dass dies eine Simulation ist.
+	\item Simulation von rechts nach links: $S = \{ (y_1,x_1), (y_{21}, x_{21}), (y_{22}, x_{21}), (y_{31}, x_{31}), (y_{32},  x_{32}), (y_{33}, x_{31}) \}$
+		Widerum ist leicht zu sehen, dass dies eine Simulation ist.
+	\item Bisimulation: Die Formel $\Box \dia B$ wird an der Wurzel im rechten Modell erfüllt, nicht jedoch im linken Modell.
 \end{enumerate}
 
-Im modalen Fall erfolgt der Beweis analog mithilfe des
-Bisimulationsinvarianzsatzes, wenn $P$ eine modale Formel ist.
+%Gegeben sind die beiden baumförmigen Kripkemodelle \kripke{M} (links) und
+%\kripke{N} (rechts).
+
+%$\mathrm{Z\kern-0.4em\raise-0.4ex\hbox{Z}}$: Zwischen den Wurzeln ($\{x,y\}_1$)
+%der beiden Modelle existiert in beiden Richtungen Simulationen, aber keine
+%Bisimulation.
+
+%Diese simulieren sich gegenseitig, wenn es sowohl eine Relation $S \subseteq M \times
+%N$ und eine Relation $R \subseteq N \times M, (S \neq R)$ gibt und beide Relationen
+%Simulationen sind.
+
+%Zunächst zeigen wir, dass eine solche Relation $S(R)$ nur existieren kann, wenn
+%$x_1 S(R) y_1$ gilt. Gilt nämlich oBdA. $x_1 S(R) y_i, i \neq 1$ dann folgt durch
+%Betrachtung der Nachfolger, wie nach Definitionsteil (ii), dass auf der rechten
+%Seite nicht ausrechend Nachfolger vorhanden sind.
+
+%Beweisführung durch Überprüfung der Definition von Simulation:
+
+%Nicht Modal:
+
+%Es gilt: $\kripke{M}, x_1 \vDash P$ und $\kripke{N},y_1 \vDash P$ (i). Für alle
+%Nachfolger von $x_1$, $x_2$, muss nun gelten: $\exists w.y_1 R w \wedge x_2 S w$
+%(ii).
+%\begin{enumerate}
+	%\item $w = y_{21}$ erfüllt diese Bedingung, da in beiden Punkten $P$ gilt.
+		%Überprüfe nun erneut (ii) bei dem Nachfolger $x_{32}$ von $x_2$. Nach
+		%Definition muss wiederum gelten: $\exists w'.y_{21} R w' \wedge x_{32} S
+		%w'$. Im Modell \kripke{N} kann nur $w' = y_{31}$ gelten. Damit ist $S$
+		%keine Simulation, da $\kripke{M}, x_{32} \nvDash P$ und $\kripke{N},
+		%y_{32} \vDash P$
+	%\item Für $w = y_{22}$ ist der Beweis analog bei Wahl Nachfolger $x_{31}$
+		%von $x_2$.
+%\end{enumerate}
+
+%Im modalen Fall erfolgt der Beweis analog mithilfe des
+%Bisimulationsinvarianzsatzes, wenn $P$ eine modale Formel ist.
 

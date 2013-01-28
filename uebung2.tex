@@ -1,62 +1,86 @@
 \aufgabe{1}{Atomare Axiomenregel}
 \newcommand{\Tk}{T_\text{komplex}}
 \newcommand{\Ta}{T_\text{atomar}}
+
+\begin{center}
+\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+Zeigen Sie, dass statt der in der Vorlesung angegebenen Axiomenregel des aussagenlogischen Tableaukalküls
+$(\phi,\neg\phi,\Gamma/\bot)$ die \emph{atomare Axiomenregel}
+\[
+  \frac{A,\neg A,\Gamma}{\bot}
+\]
+ausreicht. Formal bedeutet dies, dass man durch Induktion über die Struktur von $\phi$ herleitet, dass
+$ \phi,\neg\phi,\Gamma$ im eingeschränkten Kalkül keinen erfolgreichen Zweig hat.
+\end{minipage}}
+\end{center}
+\vspace{0.5cm}
+
 Bezeichne $\Tk$ den ursprünglichen Kalkül mit komplexer Axiomenregel $(\phi, \neg \phi, \Gamma / \bot)$ und $\Ta$ den
 neuen Kalkül mit atomarer Axiomenregel und sei $\#\phi$ die Anzahl der Konnektive der Formel $\phi$.
 
-N.B.: Außer der Axiomenregel gibt es keine Regel, die \glqq kommaübergreifend\grqq\ arbeitet; dies bedeutet, dass
-Regeln, die lediglich auf $\Gamma$ angewendet werden, ignoriert werden können.
+N.B.: Außer der Axiomenregel gibt es keine Regel, deren Antezedens mehr als ein Element eines Labels enthält; dies
+bedeutet, dass Regelanwendungen auf Elemente von $\Gamma$ nicht betrachtet werden müssen.
 
-Zu zeigen ist, dass $\Ta$ genau dann ein Label $\Gamma$ ablehnt, wenn $\Gamma$ von $\Tk$ abgelehnt wird.
-
+Zu zeigen ist, dass $\Ta$ genau dann ein Label $\Gamma$ ablehnt, wenn $\Gamma$ von $\Tk$ abgelehnt wird:
 \begin{itemize}
-        \item[\glqq$\Rightarrow$\grqq] Lässt sich die atomare Axiomenregel anwenden, so auch die komplexe Axiomenregel.
-        \item[\glqq$\Leftarrow$\grqq] Induktion über die Struktur von $\phi$:
-                        \paragraph{I.A.} $\#\phi = 0 \Rightarrow \phi = A, A$ Literal $\Rightarrow$ $\Tk$ und $\Ta$ lehnen den
-                        Label $\phi, \neg \phi, \Gamma$ ab
-                        \paragraph{I.V.} $\forall \phi, \ \#\phi < n$ gelte bereits:
-                                \[ \Tk \text{ lehnt } \phi, \neg \phi, \Gamma \text{ ab } \Rightarrow \Ta \text{ lehnt }
-                                \phi, \neg \phi, \Gamma \text{ ab } \]
-                        \paragraph{I.S.} Seien $\phi_1, \phi_2$ zwei Formeln mit $\#\phi_1 = k_1 < n, \#\phi_2 = k_2 < n$.
-                        \begin{itemize}
-                                \item[$i)$] $\phi = \phi_1 \wedge \phi_2$ und $\Tk$ lehnt den Label $\phi, \neg \phi, \Gamma$
-                                        ab. Folgende Zweige können durch Regelanwendungen im Kalkül $\Ta$ entstehen:
+    \item[\glqq$\Rightarrow$\grqq] Lässt sich die atomare Axiomenregel anwenden, so auch die komplexe Axiomenregel.
+    \item[\glqq$\Leftarrow$\grqq] Induktion über die Struktur von $\phi$:
+        \paragraph{I.A.} $\#\phi = 0 \Rightarrow \phi = A, A$ Literal $\Rightarrow$ $\Tk$ und $\Ta$ lehnen den
+        Label $\phi, \neg \phi, \Gamma$ ab
+        \paragraph{I.V.} $\forall \phi, \ \#\phi \leq n$ gelte bereits:
+        \[ \Tk \text{ lehnt } \phi, \neg \phi, \Gamma \text{ ab } \text{ und } \Ta \text{ lehnt }
+        \phi, \neg \phi, \Gamma \text{ ab } \]
+        \paragraph{I.S.} Seien $\phi_1, \phi_2$ zwei Formeln mit $\#\phi_1 = k_1 < n, \#\phi_2 = k_2 < n$.
+        \begin{itemize}
+            \item[$i)$] $\phi = \phi_1 \wedge \phi_2$ und $\Tk$ lehnt den Label $\phi, \neg \phi, \Gamma$
+                ab. Folgende Zweige können durch Regelanwendungen im Kalkül $\Ta$ entstehen:
 
-                                        \begin{minipage}{0.4\textwidth}
-                                        \begin{prooftree}
-                                                \AxiomC{$\phi_1 \wedge \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
-                                                \UnaryInfC{$\phi_1, \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
-                                                \UnaryInfC{$\phi_1, \phi_2, \neg \phi_1, \Gamma$}
-                                                \RightLabel{\scriptsize{nach I.V.}}
-                                                \UnaryInfC{$\bot$}
-                                        \end{prooftree}\end{minipage}\begin{minipage}{0.4\textwidth}
-                                        \begin{prooftree}
-                                                \AxiomC{$\phi_1 \wedge \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
-                                                \UnaryInfC{$\phi_1, \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
-                                                \UnaryInfC{$\phi_1, \phi_2, \neg \phi_2, \Gamma$}
-                                                \RightLabel{\scriptsize{nach I.V.}}
-                                                \UnaryInfC{$\bot$}
-                                        \end{prooftree}
-                                        \end{minipage}
+                \begin{minipage}{0.4\textwidth}
+                    \begin{prooftree}
+                        \AxiomC{$\phi_1 \wedge \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
+                        \UnaryInfC{$\phi_1, \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
+                        \UnaryInfC{$\phi_1, \phi_2, \neg \phi_1, \Gamma$}
+                        \RightLabel{\scriptsize{nach I.V.}}
+                        \UnaryInfC{$\bot$}
+                    \end{prooftree}
+                \end{minipage}\hfill
+                \begin{minipage}{0.4\textwidth}
+                    \begin{prooftree}
+                        \AxiomC{$\phi_1 \wedge \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
+                        \UnaryInfC{$\phi_1, \phi_2, \neg (\phi_1 \wedge \phi_2), \Gamma$}
+                        \UnaryInfC{$\phi_1, \phi_2, \neg \phi_2, \Gamma$}
+                        \RightLabel{\scriptsize{nach I.V.}}
+                        \UnaryInfC{$\bot$}
+                    \end{prooftree}
+                \end{minipage}
 
-                                    In beiden Fällen wird der Label auch von $\Ta$ abgelehnt.
+                In beiden Fällen wird der Label auch von $\Ta$ abgelehnt.
 
-                                \item[$ii)$] $\phi = \neg\phi_1$ und $\Tk$ lehnt den Label $\neg\phi_1, \neg\neg\phi_1, \Gamma$
-                                        ab. Im Kalkül $\Ta$ erhält man:
-                                        \begin{prooftree}
-                                                \AxiomC{$\neg\phi_1, \neg\neg\phi_1, \Gamma$}
-                                                \RightLabel{\scriptsize{$(\neg\neg)$}}
-                                                \UnaryInfC{$\neg\phi_1, \phi_1, \Gamma$}
-                                                \UnaryInfC{$\bot$}
-                                        \end{prooftree}
+                \item[$ii)$] $\phi = \neg\phi_1$ und $\Tk$ lehnt den Label $\neg\phi_1, \neg\neg\phi_1, \Gamma$
+                    ab. Im Kalkül $\Ta$ erhält man:
+                    \begin{prooftree}
+                        \AxiomC{$\neg\phi_1, \neg\neg\phi_1, \Gamma$}
+                        \RightLabel{\scriptsize{$(\neg\neg)$}}
+                        \UnaryInfC{$\neg\phi_1, \phi_1, \Gamma$}
+                        \UnaryInfC{$\bot$}
+                    \end{prooftree}
 
-                                    Der Label wird also auch von $\Ta$ abgelehnt.
-                        \end{itemize}
-                        Da es nur die Konnektive $\wedge$ und $\neg$ gibt, folgt die Behauptung.
+                    Der Label wird also auch von $\Ta$ abgelehnt.
+        \end{itemize}
+        Da es nur die Konnektive $\wedge$ und $\neg$ gibt, folgt die Behauptung.
 \end{itemize}
 
 \newpage
 \aufgabe{2}{Rekursiver Tableaualgorithmus}
+\begin{center}
+\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+    Man definiere einen Label $\Gamma$ als \emph{erfolgreich}, wenn jede darauf anwendbare Tableauregel mindestens eine
+    erfolgreiche Konklusion hat (warum ist das eine Definition?). Zeigen Sie durch Induktion über die Baumhöhe, dass ein
+    Label genau dann erfolgreich ist, wenn er einen erfolgreichen Zweig hat.
+\end{minipage}}
+\end{center}
+\vspace{0.5cm}
+
 Da der Label $\Gamma$ endlich viele Konnektive hat und jede Regel die Anzahl der Konnektive verringert, führen alle
 Kombinationen von Regelanwendungen in endlicher Zeit zur Terminierung. Damit ist der Begriff eines \emph{erfolgreichen}
 Labels wohldefiniert.
@@ -66,80 +90,87 @@ Pfade von der Wurzel zu jedem Blatt Folgen von Regelanwendungen repräsentieren,
 erfolgreichen Terminierung des Tableaualgorithmus führen.
 
 Zu zeigen: Label erfolgreich $ \ \Leftrightarrow \ \exists $ erfolgreicher Zweig
+
 Beweis:
 \begin{itemize}
-        \item [$\Rightarrow$] Nach Definition.
-        \item [$\Leftarrow$] Label $\Gamma$ hat im Tableaualgorithmus einen erfolgreichen Zweig.
-                
-                Induktion über die Baumhöhe:
-                \paragraph{I.A.} Höhe 0: $\Gamma = A_1, \dots, A_m$, $A_i$ verschiedene Literale (negativ oder positiv),
-                d.h. es ist keine weitere Regel anwendbar $\Rightarrow \ \Gamma$ erfolgreich (\emph{vacuously}).
-                \paragraph{I.V.} Für alle Label $\Gamma$ der Höhe $k < n$ mit erfolgreichem Zweig gelte die Behauptung.
-                \paragraph{I.S.} Höhe $n$.
-                \begin{itemize}
-                        \item[$(\wedge)$] $\Gamma = \varphi \wedge \psi, \Xi \ \vdash \ \phi, \psi, \Xi \ \Rightarrow $ Höhe
-                                $< n$
+    \item [\glqq$\Rightarrow$\grqq] folgt direkt aus der Definition.
+    \item [\glqq$\Leftarrow$\grqq] Label $\Gamma$ habe im Tableaualgorithmus einen erfolgreichen Zweig.
 
-                                Nach I.V. gilt: $\varphi, \psi, \Xi$ ist erfolgreicher Label. Somit führt auch
-                                die Regelanwendung bei $\Gamma$ zu einer erfolgreichen Konklusion.
-                        \item[$(\neg\neg)$] $\Gamma = \neg \neg \varphi, \Xi \ \vdash \ \varphi, \Xi \ \Rightarrow $ Höhe
-                                $< n$
+        Induktion über die Baumhöhe:
+        \paragraph{I.A.} Höhe 0: $\Gamma = A_1, \dots, A_m$, wobei $A_i$ verschiedene Literale (negativ oder positiv)
+        sind, d.h. es ist keine weitere Regel anwendbar $\Rightarrow \ \Gamma$ erfolgreich (\emph{vacuously}).
+        \paragraph{I.V.} Für alle Label $\Gamma$ der Höhe $k < n$ mit erfolgreichem Zweig gelte die Behauptung.
+        \paragraph{I.S.} Höhe $n$.
+        \begin{itemize}
+            \item[$(\wedge)$] $\Gamma = \varphi \wedge \psi, \Xi \ \vdash \ \phi, \psi, \Xi$, Label mit Höhe $< n$
 
-                                Nach I.V. gilt: $\varphi, \Xi$ ist erfolgreicher Label. Somit führt auch
-                                die Regelanwendung bei $\Gamma$ zu einer erfolgreichen Konklusion.
-                        \item[$(\neg\wedge)$] $\Gamma = \neg (\varphi \wedge \psi), \Xi \ \vdash \ \neg \varphi, \Xi \|
-                                \neg \psi, \Xi \ \Rightarrow $ Höhe jeweils
-                                $< n$
+                Nach I.V. gilt: $\varphi, \psi, \Xi$ ist erfolgreicher Label. Somit führt auch die Regelanwendung bei
+                $\Gamma$ zu einer erfolgreichen Konklusion.
+            \item[$(\neg\neg)$] $\Gamma = \neg \neg \varphi, \Xi \ \vdash \ \varphi, \Xi$, Label mit Höhe $< n$
 
-                                O.B.d.A. ist $\neg \varphi, \Xi$ erfolgreicher Zweig von $\Gamma$. Nach I.V. gilt:
-                                $\neg \varphi, \Xi$ ist erfolgreicher Label. Somit führt auch diese Regelanwendung bei
-                                $\Gamma$ zu mindestens einer erfolgreichen Konklusion.
-                \end{itemize}
-                Somit hat $\Gamma$ für jede mögliche Regelanwendung eine erfolgreiche Konklusion.
+                Nach I.V. gilt: $\varphi, \Xi$ ist erfolgreicher Label. Somit führt auch
+                die Regelanwendung bei $\Gamma$ zu einer erfolgreichen Konklusion.
+            \item[$(\neg\wedge)$] $\Gamma = \neg (\varphi \wedge \psi), \Xi \ \vdash \ \neg \varphi, \Xi \ | \ \neg
+                \psi, \Xi$, jeweils Label mit Höhe $< n$
+
+                O.B.d.A. ist $\neg \varphi, \Xi$ Knoten des erfolgreichen Zweiges von $\Gamma$. Nach I.V. gilt: $\neg
+                \varphi, \Xi$ ist erfolgreicher Label. Somit führt auch diese Regelanwendung bei $\Gamma$ zu mindestens
+                einer erfolgreichen Konklusion.
+        \end{itemize}
+        Somit hat $\Gamma$ für jede mögliche Regelanwendung eine erfolgreiche Konklusion.
 \end{itemize}
 Damit ist $\Gamma$ ein erfolgreicher Label.
 
 \newpage
 \aufgabe{3}{Reduktion von BDDs}
+\begin{center}
+\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+    Geben Sie ein baumförmiges BDD für die Formel $(x \vee y) \wedge (z \vee w)$ an und reduzieren Sie es, so weit
+    möglich.
+\end{minipage}}
+\end{center}
+\vspace{0.5cm}
+
 Die Formel $(x \vee y) \wedge (z \vee w)$ kann dargestellt werden als baumförmiges BDD:
 
 \begin{center}
 \begin{tikzpicture}[
-        nterm/.style={circle,draw,anchor=north},
-        term/.style={rectangle,draw,anchor=north},
-        level distance=0.76cm, growth parent anchor=south, sibling distance=3cm
-        ]
-        \node (x) [nterm] {$x$} [->]
-            child{ [sibling distance=1cm] node (y) [nterm] {$y$}
-            child{ node (a0) [term] {$0$} edge from parent node[left,scale=.75] {$0$} }
-                        child{ node (z1) [nterm,fill=green!50] {$z$}
-                                    child{ node (w1) [nterm,fill=green!50] {$w$}
-                                                child{ node (b0) [term,fill=green!50] {$0$} edge from parent node[left,scale=.75] {$0$} }
-                                                child{ node (a1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
-                                    edge from parent node[left,scale=.75] {$0$} }
-                                    child { node (b1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
-                        edge from parent node[right,scale=.75] {$1$} }
-            edge from parent node[above left,scale=.75] {$0$} }
-            child{ [sibling distance=1cm] node (z2) [nterm,fill=green!50] {$z$}
-                        child{ node (w2) [nterm,fill=green!50] {$w$}
-                                    child{ node[fill=green!50] (c0) [term] {$0$} edge from parent node[left,scale=.75] {$0$} }
-                                    child{ node[fill=green!50] (c1) [term] {$1$} edge from parent node[right,scale=.75] {$1$} }
-                               edge from parent node[left,scale=.75] {$0$} }
-                        child{ node (d1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
-        edge from parent node[above right,scale=.75] {$1$} };
+    nterm/.style={circle,draw,thick,fill=white,anchor=north,minimum size=6mm,drop shadow},
+    term/.style={rectangle,draw,fill=white,thick,anchor=north,minimum size=6mm,drop shadow},
+    level distance=0.76cm, growth parent anchor=south, sibling distance=5cm
+    ]
+    \node (x) [nterm] {$x$} [-latex]
+        child{ [sibling distance=1.5cm] node (y) [nterm] {$y$}
+        child{ node (a0) [term] {$0$} edge from parent node[left,scale=.75] {$0$} }
+            child{ node (z1) [nterm,fill=green!50] {$z$}
+                    child{ node (w1) [nterm,fill=green!50] {$w$}
+                        child{ node (b0) [term,fill=green!50] {$0$} edge from parent node[left,scale=.75] {$0$} }
+                        child{ node (a1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
+                    edge from parent node[left,scale=.75] {$0$} }
+                    child { node (b1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
+            edge from parent node[right,scale=.75] {$1$} }
+        edge from parent node[above left,scale=.75] {$0$} }
+        child{ [sibling distance=1.5cm] node (z2) [nterm,fill=green!50] {$z$}
+            child{ node (w2) [nterm,fill=green!50] {$w$}
+                    child{ node[fill=green!50] (c0) [term] {$0$} edge from parent node[left,scale=.75] {$0$} }
+                    child{ node[fill=green!50] (c1) [term] {$1$} edge from parent node[right,scale=.75] {$1$} }
+                   edge from parent node[left,scale=.75] {$0$} }
+            child{ node (d1) [term,fill=green!50] {$1$} edge from parent node[right,scale=.75] {$1$} }
+    edge from parent node[above right,scale=.75] {$1$} };
 \end{tikzpicture}
 \end{center}
 
 Die farbig markierten Untergraphen der beiden $z$-Knoten sind isomorph. Somit kann einer der $z$-Knoten entfernt werden,
 wobei die eingehende Kante auf den anderen $z$-Knoten umgebogen wird. Dadurch entsteht der links abgebildete Graph:
+\vspace{0.5cm}
 
 \begin{minipage}{0.4\textwidth}
 \begin{center}
 \begin{tikzpicture}[
-        p/.style={scale=.75,->,draw},
-        nterm/.style={circle,draw,anchor=north},
-        term/.style={rectangle,draw,anchor=north},
-        level distance=0.76cm, growth parent anchor=south, sibling distance=2cm
+        p/.style={scale=.75},
+        nterm/.style={circle,draw,thick,fill=white,anchor=north,minimum size=6mm,drop shadow},
+        term/.style={rectangle,draw,fill=white,thick,anchor=north,minimum size=6mm,drop shadow},
+        level distance=0.76cm, growth parent anchor=south, sibling distance=1.5cm
         ]
         \node (x) [nterm] {$x$};
         \node [nterm,below left=of x] (y) {$y$};
@@ -149,22 +180,22 @@ wobei die eingehende Kante auf den anderen $z$-Knoten umgebogen wird. Dadurch en
         \node [term,below right=of z,fill=blue!50] (a1) {$1$};
         \node [term,below left=of w,fill=red!50] (b0) {$0$};
         \node [term,below right=of w,fill=blue!50] (b1) {$1$};
-        \path [p] (x) -- node[above left] {$0$} (y);
-        \path [p] (x) -- node[above right] {$1$} (z);
-        \path [p] (y) -- node[above left] {$0$} (a0);
-        \path [p] (y) -- node[above] {$1$} (z);
-        \path [p] (z) -- node[above left] {$0$} (w);
-        \path [p] (z) -- node[above right] {$1$} (a1);
-        \path [p] (w) -- node[above left] {$0$}  (b0);
-        \path [p] (w) -- node[above right] {$1$}  (b1);
+        \path [draw,-latex] (x) -- node[p,above left] {$0$} (y);
+        \path [draw,-latex] (x) -- node[p,above right] {$1$} (z);
+        \path [draw,-latex] (y) -- node[p,above left] {$0$} (a0);
+        \path [draw,-latex] (y) -- node[p,above] {$1$} (z);
+        \path [draw,-latex] (z) -- node[p,above left] {$0$} (w);
+        \path [draw,-latex] (z) -- node[p,above right] {$1$} (a1);
+        \path [draw,-latex] (w) -- node[p,above left] {$0$}  (b0);
+        \path [draw,-latex] (w) -- node[p,above right] {$1$}  (b1);
 \end{tikzpicture}
 \end{center}
 \end{minipage}\hfill\begin{minipage}{0.4\textwidth}
 \begin{center}
 \begin{tikzpicture}[
-        p/.style={scale=.75,->,draw},
-        nterm/.style={circle,draw,anchor=north},
-        term/.style={rectangle,draw,anchor=north},
+        p/.style={scale=.75},
+        nterm/.style={circle,draw,thick,fill=white,anchor=north,minimum size=6mm,drop shadow},
+        term/.style={rectangle,draw,fill=white,thick,anchor=north,minimum size=6mm,drop shadow},
         level distance=0.76cm, growth parent anchor=south, sibling distance=2cm
         ]
         \node (x) [nterm] {$x$};
@@ -173,21 +204,30 @@ wobei die eingehende Kante auf den anderen $z$-Knoten umgebogen wird. Dadurch en
         \node [nterm,below left=of z] (w) {$w$};
         \node [term,below left=of w,fill=red!50] (b0) {$0$};
         \node [term,below right=of w,fill=blue!50] (b1) {$1$};
-        \path [p] (x) -- node[above left] {$0$} (y);
-        \path [p] (x) -- node[above right] {$1$} (z);
-        \path [p] (y) -- node[left] {$0$} (b0);
-        \path [p] (y) -- node[above] {$1$} (z);
-        \path [p] (z) -- node[above left] {$0$} (w);
-        \path [p] (z) -- node[right] {$1$} (b1);
-        \path [p] (w) -- node[above left] {$0$}  (b0);
-        \path [p] (w) -- node[above right] {$1$}  (b1);
+        \path [draw,-latex] (x) -- node[p,above left] {$0$} (y);
+        \path [draw,-latex] (x) -- node[p,above right] {$1$} (z);
+        \path [draw,-latex] (y) -- node[p,left] {$0$} (b0);
+        \path [draw,-latex] (y) -- node[p,above] {$1$} (z);
+        \path [draw,-latex] (z) -- node[p,above left] {$0$} (w);
+        \path [draw,-latex] (z) -- node[p,right] {$1$} (b1);
+        \path [draw,-latex] (w) -- node[p,above left] {$0$}  (b0);
+        \path [draw,-latex] (w) -- node[p,above right] {$1$}  (b1);
 \end{tikzpicture}
 \end{center}
 \end{minipage}
+\vspace{0.5cm}
 
 Nach Entfernen der doppelten terminalen Knoten erhält man den rechten Graphen, das vollständig reduzierte BDD.
 
 \aufgabe{4}{Erfüllbarkeit von BDDs}
+\begin{center}
+\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+    Geben Sie einen Algorithmus an, der ein (nicht notwendig geordnetes) BDD auf Erfüllbarkeit überprüft, und
+    analysieren Sie Laufzeit und Platzverbrauch.
+\end{minipage}}
+\end{center}
+\vspace{0.5cm}
+
 Ein BDD ist erfüllbar, wenn es einen Pfad von der Wurzel $r$ zu einem Terminal mit Label $1$ gibt. Die Existenz eines
 terminalen Knotens mit Label $1$ ist sogar hinreichend:
 
@@ -196,3 +236,46 @@ mindestens noch einen initialen Knoten, was im Widerspruch zur Definition eines 
 
 $\Rightarrow$ Algorithmus: Durchsuchen der Knotenmenge nach terminalem Knoten mit Label $1$. Die Laufzeit ist linear in
 der Länge der Eingabe, der Algorithmus arbeitet ohne Platzoverhead.
+
+\aufgabe{5}{Verstärkung}
+\begin{center}
+\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+    Man ändere die Formulierung des Tableaualgorithmus gemäß Aufgabe 2 ab und füge dann die Verstärkungsregel
+    (\emph{strengthening}) $\Delta,\Gamma/\Gamma$ hinzu. Zeigen Sie, dass dies die Antworten des Algorithmus nicht
+    ändert, d.h., dass im erweiterten System genau dann \glqq erfüllbar\grqq\ geantwortet wird, wenn dies im
+    ursprünglichen System der Fall war.
+\end{minipage}}
+\end{center}
+\vspace{0.5cm}
+
+Zu zeigen ist lediglich, dass, wenn der Algorithmus der Algorithmus ohne Verstärkungsregel ein Label akzeptiert, dann
+auch der Algorithmus mit Verstärkungsregel (Induktion 2). Hierzu muss zunächst gezeigt werden, dass der ursprüngliche Algorithmus
+$\Gamma$ akzeptiert, wenn er $\Delta, \Gamma$ akzeptiert (Induktion 1).
+
+\subsection*{Induktion 1 (über die Anzahl der noch anwendbaren Regeln):}
+\paragraph{I.A.} Label $\Delta, A$ (wobei $A$ Literal) und Label $A$ wird offensichtlich akzeptiert.
+\paragraph{I.V.} Label $\Delta, \Gamma_k$ und $\Gamma_k$ werden akzeptiert, wobei auf $\Gamma_k$ noch $k < n$ für ein $n
+\in \mathbb{N}$ Regeln anwendbar sind.
+\paragraph{I.S.} Label $\Delta, \Gamma_n$. Regelanwendungen auf $\Delta$ verändern nicht $\Gamma_n$ und liefern
+lediglich $\Delta^\prime, \Gamma_n$. Da $\Delta$ endlich groß ist, muss irgendwann eine Regel auf $\Gamma_n$ angewendet
+werden, man erhält $\Gamma_{n-1}$, die Anzahl der noch anwendbaren Regeln ist $< n$. Somit folgt nach
+Induktionsvoraussetzung, dass $\Gamma_n$ akzeptiert wird.
+\vspace{0.6cm}
+
+\subsection*{Induktion 2 (über die Anzahl der noch anwendbaren Regeln):}
+\paragraph{I.A.} keine Regeln im ursprünglichen Algorithmus anwendbar, d.h. $\Xi_0 = \Delta, \Gamma = A_1, \cdots,
+A_m$, wobei $A_i$ verschiedene Literale (negativ oder positiv) sind. Bei Anwendung von \emph{strengthening} erhält man
+$\Gamma = A_j, \cdots, A_m, 0 < j < m$. Induktiv folgt, dass der neue Algorithmus ebenfalls $\Xi_0$ akzeptiert.
+
+\paragraph{I.V.} Seien im ursprünglichen Algorithmus noch $k < n$ für ein $n \in \mathbb{N}$ Regeln auf einen Label
+$\Xi_k$ anwendbar. Beide Algorithmen akzeptieren $\Xi_k$.
+
+\paragraph{I.S.} $\Xi_n$ sei ein Label, der vom ursprünglichen Algorithmus akzeptiert wird und auf den $n$ Regeln
+anwendbar sind. Dieser werde nun im neuen Algorithmus betrachtet. Wird eine Regel aus dem ursprünglichen Algorithmus
+angewendet, so entsteht nach Definition von Aufgabe 2 ein Label, der vom ursprünglichen Algorithmus akzeptiert wird und
+auf den nur noch $n-1$ Regeln anwendbar sind. Nach Induktionsvoraussetzung wird dieser auch vom neuen Algorithmus
+akzeptiert. Anwendung von \emph{strengthening} auf $\Xi_n = \Delta, \Gamma$: dann gilt nach Induktion 1, dass $\Gamma$
+vom ursprünglichen Algorithmus akzeptiert wird und auf $\Gamma$ sind noch $< n$ Regeln anwendbar also folgt nach
+Induktionsvoraussetzung, dass $\Xi_n$ vom neuen Algorithmus akzeptiert wird.
+
+Damit folgt die Behauptung.

@@ -1,4 +1,14 @@
 \aufgabe{1}{Tableaux-Algorithmus}
+\angabe{%
+Wenden Sie den Tableaux-Algorithmus auf die Formel
+\[
+  \left( (A \wedge B) \to \neg C \right) \wedge (\neg A \to C) \wedge (\neg B
+  \to C) \wedge \neg (B \to \neg C)
+\]
+an. Ist die Formel erfüllbar? [Hinweis: Sie müssen zunächst alle Konnektive
+durch $\neg$ und $\wedge$ dekodieren.]
+}
+
 \vspace{-2em}
 \begin{align*}
   \varphi & = \left( (A \wedge B) \to \neg C \right) \wedge (\neg A \to C) \wedge (\neg B \to C) \wedge
@@ -37,6 +47,14 @@ die Formel erfüllt. Der Tableaux-Algorithmus sollte uns im Folgenden also dasse
 Hier ist keine Regel mehr anwendbar, die Formel wird wie erwartet als erfüllbar erkannt mit oben beschriebener
 Wahrheitsbelegung.
 \aufgabe{2}{Resolution}
+\angabe{%
+Wenden Sie den Resolutionsalgorithmus auf die CNF
+\[
+  \big\{ \{\neg D, A, B\}, \{C, B, \neg A\}, \{\neg D, B\}, \{\neg B, A\}, \{D,
+  C\}, \{\neg C, B, \neg A\}, \{D, B, \neg C\}, \{\neg B, \neg A\} \big\}
+\]
+an -- ist die CNF erfüllbar? Wenden Sie alternativ DPLL an -- ergeben sich Vereinfachungen?
+}
 \vspace{-2em}
 \[
  \varphi = \big\{ \{\neg D, A, B\}, \{C, B, \neg A\}, \{\neg D, B\}, \{\neg B, A\}, \{D, C\}, \{\neg C, B, \neg A\},
@@ -97,7 +115,25 @@ Nach einer weiteren \emph{Unit Propagation} ergibt sich auch hier die leere Klau
 Formel ist nicht erfüllbar.
 
 \aufgabe{3}{Maximale konsistente CNF}
-
+\angabe{%
+Man erinnere sich, dass eine Klauselmenge (also eine CNF) $\phi$
+\emph{resolutionsabgeschlossen} heißt, wenn aus $C \cup \{A\}, D \cup \{\neg
+A\} \in \phi$ stets $C \cup D \in \phi$ folgt. Wir nennen eine CNF $\phi$ \emph{konsistent}, wenn sich aus ihr durch wiederholtes Anwenden der Resolutionsregel \emph{nicht} die leere Klausel herleiten lässt, wenn sie also vom Resolutionsalgorithmus als erfüllbar erkannt wird. Gegeben eine endliche Menge $\mathcal{A}$ von Aussagenvariablen heißt $\phi$ eine \emph{CNF über $\mathcal{A}$}, wenn $\phi$ nur Aussagenvariablen aus $\mathcal{A}$ erwähnt, und \emph{maximal konsistent über $\mathcal{A}$}, wenn $\phi$ maximal unter den konsistenten CNF über $\mathcal{A}$ ist. Beweisen Sie ohne Verwendung des Vollständigkeitsbeweises aus der Vorlesung folgende Aussagen:
+\begin{enumerate}
+	\item Jede konsistente CNF über $\mathcal{A}$ ist enthalten in einer maximal konsistenten CNF über $\mathcal{A}$.
+	\item Sei $\phi$ eine maximal konsistente CNF über $\mathcal{A}$.
+		\begin{enumerate}
+			\item Für $A \in \mathcal{A}$ gilt $\{A\} \not\in \phi$ genau dann, wenn $\{\neg A\} \in \phi$.
+			\item $\phi$ ist resolutionsabgeschlossen.
+			\item $\phi$ ist abgeschlossen unter Abschwächung von Klauseln, d.h. aus $C \in \phi$ und $C \subseteq D$ folgt $D \in \phi$.
+			\item Für Klauseln $C, D$ gilt $C \cup D \in \phi$ genau dann, wenn $C \in \phi$ oder $D \in \phi$.
+			\item Die durch
+				\[ \kappa(A) = \top \Leftrightarrow \{A\} \in \phi \]
+				  gegebene Wahrheitsbelegung $\kappa\ :\ \mathcal{A} \to \mathbf{2}$ erfüllt $\phi$.
+		\end{enumerate}
+	\item Der Resolutionsalgorithmus ist vollständig, d.h.\ jede konsistente CNF ist erfüllbar.
+\end{enumerate}
+}
 \begin{enumerate}
     \item Da Maximalität von konsistenten CNF über die Teilmengenrelation definiert ist, also 
           \[

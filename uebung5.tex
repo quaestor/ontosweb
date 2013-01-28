@@ -168,9 +168,9 @@ Modells, der von $x$ in maximal $n$ Schritten erreichbar ist, mindestens zwei
 verschiedene Nachfolger besitzt.
 
 Durch die zweite Konjunktion wird ein Atom $q_i$ (bzw. seine Negation $\neg q_i$)
-von einem Punkt $y$ der von $x$ ausgehend in mindestens $i$ und maximal $n$
-Schritten erreichbar ist auf alle seine Nachfolger propagiert; somit folgt,
-dass von $y$ ab alle erreichbaren Punkte $q_i$ (bzw. $\neg q_i$) erfüllen,
+von einem Punkt $y$, der von $x$ ausgehend in mindestens $i$ und maximal $n$
+Schritten erreichbar ist, auf alle seine Nachfolger propagiert; somit folgt,
+dass ab $y$ alle erreichbaren Punkte $q_i$ (bzw. $\neg q_i$) erfüllen,
 solange sie nicht weiter als $n+1$ Schritte von $x$ entfernt sind.
 
 Dies bedeutet, dass von $x$ aus im $i$-ten Schritt entweder $q_i$ oder $\neg
@@ -198,7 +198,7 @@ $\kripke{M}, z \vDash \neg p_1$. Aus der Symmetrie der Relation $R$ folgt jedoch
 $yRz$. Die zweite Konjunktion fordert jedoch für $i = 1$, dass jeder Nachfolger von $y$ (somit auch $z$) $p_1$ erfüllen
 muss. Dies führt zu einem Widerspruch, $\kripke{M}, x \not\vDash \phi_1$.
 
-Die oben geschilderten Bedingungen müssen auch für alle $n$ mit $n > 1$ gelten. Folglich ist kein $\phi_n$, $n > 1$ über
+Die oben geschilderten Bedingungen müssen auch für alle $n$ mit $n > 1$ gelten. Folglich ist kein $\phi_n$, $n \geq 1$ über
 S5 erfüllbar.
 
 Eine Ausnahme bildet $\phi_0$, da hier die zweite Konjunktion leer ist.

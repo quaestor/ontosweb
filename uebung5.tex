@@ -55,94 +55,95 @@ Im letzten Schritt lässt sich auf beide möglichen Resultate der Anwendung der
 $(\neg \wedge)$ Regel sofort die $(clash)$-Regel anwenden.
 
 Da für jede Regelanwendung eine erfolgreiche Konklusion existieren muss
-damit ein Label erfolgreich ist, ist dieser Label nicht erfolgreich.
+damit ein Label erfolgreich ist, ist dieser Label nicht erfolgreich.\\
 
 
-Nach Anwendung von Umformungsregeln für Implikation, Diamond, De Morgan'schen
-Regeln, ($\wedge$)-Regeln auf oberster Ebene und Anwendung der ($\neg\neg$)
-Regel des Kalküls wird die Formel wie folgt dargestellt. Anschließend werden die
+In der zweiten Formel werden die Umformungsregeln für Implikation, Diamond, De Morgan'sche
+und ($\wedge$)-Regeln auf oberster Ebene angewandt. Durch anschließende Anwendung der ($\neg\neg$)
+Regel des Kalküls wird die Formel wie folgt dargestellt. Danach werden die
 Regeln des Kalküls wie farbig markiert angewandt.
 
 \[\ \Box \neg \underbrace{(p \wedge (\Box\neg q \wedge \Box\neg r))}_{\defeq
-	\phi} \wedge \neg (\Box\neg p \wedge
-	\Box\neg\neg p) \wedge \Box \neg (\neg p \wedge \Box\neg p) \wedge \Box\Box(p
-\wedge \neg r) \]
+	\phi}
+	\wedge \neg (\Box\neg p \wedge \Box\neg\neg p)
+	\wedge \Box \neg \underbrace{(\neg p \wedge \Box\neg p)}_{\defeq \chi}
+\wedge \Box\Box \underbrace{(p \wedge \neg r)}_{\defeq \psi} \]
 
 
 \begin{prooftree}
 	\AxiomC{$ \Box \neg \phi,
 		\cm{\neg ( \Box \neg p \wedge \Box \neg \neg p )},
-		\Box \neg ( \neg p \wedge \Box \neg p ),
-		\Box \Box ( p \wedge \neg r ) $}
-\anm{$(\neg \wedge)$}
+		\Box \neg \chi,
+		\Box \Box \psi $}
+		\anm{$(\neg \wedge)(1)$}
 
 \UnaryInfC{$ \Box \neg \phi,
 	\cm{\neg \Box \neg p} ,
-		\Box \neg ( \neg p \wedge \Box \neg p ),
-		\Box \Box ( p \wedge \neg r ) \quad | \quad
-\Box \neg \phi,
-		\neg \Box \neg \neg p,
-		\Box \neg ( \neg p \wedge \Box \neg p ),
-		\Box \Box ( p \wedge \neg r ) $}
+		\Box \neg \chi,
+		\Box \Box \psi
+		$}
 \anm{$(\neg \Box)$}
 
 \UnaryInfC{$ \neg \phi,
-		\neg \neg p ,
-		\neg ( \neg p \wedge \Box \neg p ),
-		\Box ( p \wedge \neg r ) \quad | \quad
-\Box \neg \phi,
-		\cm{\neg \Box \neg \neg p},
-		\Box \neg ( \neg p \wedge \Box \neg p ),
-		\Box \Box ( p \wedge \neg r ) $}
-\anm{$(\neg \Box)$}
+		\cm{\neg \neg p} ,
+		\neg \chi,
+		\Box \psi
+		$}
+		\anm{$(\neg \neg)$}
 
 \UnaryInfC{$ \neg \phi,
-	\cm{\neg \neg p} ,
-		\neg ( \neg p \wedge \Box \neg p ),
-		\Box ( p \wedge \neg r ) \quad | \quad
-		\neg \phi,
-		\cm{\neg \neg \neg p},
-		\neg ( \neg p \wedge \Box \neg p ),
-		\Box ( p \wedge \neg r ) $}
+		p ,
+		\cm{\neg \chi},
+		\Box \psi
+		$}
+		\anm{$(\neg \wedge)(2)$}
+
+\UnaryInfC{$ \neg \phi,
+		p ,
+		\cm{\neg \neg p},
+		\Box \psi
+		 $}
 \anm{$(\neg \neg)$}
 
-\UnaryInfC{$ \neg \phi,
+\UnaryInfC{$ \cm{\neg \phi},
 		p ,
-		\cm{\neg ( \neg p \wedge \Box \neg p )},
-		\Box ( p \wedge \neg r )
-		\quad
-		|
-		\quad
-		\neg \phi,
-		\neg p,
-		\neg ( \neg p \wedge \Box \neg p ),
-		\Box ( p \wedge \neg r ) $}
-\anm{$(\neg \wedge)$}
+		\Box \psi
+		$}
+		\anm{$(\neg \wedge)(3)$}
 
-\UnaryInfC{$ \neg \phi,
+\UnaryInfC{$
+		\cm{\neg ( \Box \neg q \wedge \Box \neg r)},
 		p ,
-		\neg \neg p ,
-		\Box ( p \wedge \neg r )
-		\quad
-		|
-		\quad
-		\neg \phi,
+		\Box \psi
+		$}
+		\anm{$(\neg \wedge)(4)$}
+
+\UnaryInfC{$
+		\cm{\neg \Box \neg q},
 		p ,
-		\neg \Box \neg p ,
-		\Box ( p \wedge \neg r )
-		\quad
-		|
-		\quad
-		\neg \phi,
-		\neg p,
-		\neg ( \neg p \wedge \Box \neg p ),
-		\Box ( p \wedge \neg r ) $}
-\anm{$(\neg \wedge)$}
+		\Box \psi
+		$}
+\anm{$(\neg \Box)$}
 
+\UnaryInfC{$
+		\cm{\neg \neg q},
+		p ,
+		\psi
+		$}
+\anm{$(\neg \neg)$}
 
+\UnaryInfC{$
+		q,
+		p ,
+		\neg r
+		$}
 \end{prooftree}
 
-
+Da ein Zweig mit erfolgreicher Konklusion existiert, is dieser Label
+erfolgreich. Durch die Wahl des linken Zweiges beim Anwenden der
+$(\neg\wedge)(1)$- und der $(\neg\wedge)(2)$-Regel, des rechten Zweiges bei der
+$(\neg\wedge)(3)$-Regel und Wahl des linken Zweiges bei der
+$(\neg\wedge)(4)$-Regel erhält man die erfüllende Belegung $ q, p, \neg r $.
 
 \aufgabe{2}{Große Modelle}
 \angabe{%

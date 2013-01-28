@@ -19,7 +19,6 @@
 \usetikzlibrary{arrows}
 \usepackage{dsfont}
 \usepackage{amsmath, amsthm, amssymb}
-\usepackage{txfonts}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{color}
@@ -30,6 +29,7 @@
 \usepackage{textcomp}
 \usepackage{etoolbox}
 \usepackage{bussproofs}
+\usepackage{mathtools}
 
 % Pretty captions!
 %\usepackage{caption}
@@ -49,6 +49,8 @@
 \setlength{\textheight}{23cm}
 \setlength{\headsep}{1.5cm}
 
+\newcounter{blatt}
+\setcounter{blatt}{1}
 \lhead{
 Ulrich Dorsch\\
 Christoph Rauch\\
@@ -56,7 +58,7 @@ Manuel Zerpies
 }
 \rhead{
 $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
-Übungsblatt 1
+Übungsblatt \theblatt
 }
 \chead{
 \begin{tikzpicture}[remember picture,overlay]
@@ -138,6 +140,8 @@ $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
 	{0.95\textwidth}#1\end{minipage}}%
 	\end{center}\vspace{0.5cm}}
 
+\newcommand{\defeq}{\vcentcolon=}
+
 \author{Ulrich Dorsch, Christoph Rauch, Manuel Zerpies}
 
 \title{Ontologien im Semantic Web\\
@@ -148,8 +152,12 @@ $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
 %\maketitle
 %\tableofcontents
 %\include{uebung1}
+\stepcounter{blatt}
 %\include{uebung2}
+\stepcounter{blatt}
 %\include{uebung3}
+\stepcounter{blatt}
 %\include{uebung4}
+\stepcounter{blatt}
 \include{uebung5}
 \end{document}

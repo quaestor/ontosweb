@@ -30,10 +30,10 @@ $(\wedge)$-Regel auf oberster Ebene sowie $(\neg \neg)$-Regel des Kalküls); ans
 wird der Kalkül wie farbig markiert durchgeführt.
 
 \[\Box(\dia p)
-	\wedge \Box \underbrace{(p \rightarrow{} (\dia q \vee \dia r))}_{\coloneqq \phi}
+	\wedge \Box \underbrace{(p \rightarrow{} (\dia q \vee \dia r))}_{\defeq \phi}
 \wedge \dia p
 \wedge \dia \neg p
-\wedge \Box \underbrace{\Box ((q \vee r) \rightarrow{} \neg p)}_{\coloneqq \psi}
+\wedge \Box \underbrace{\Box ((q \vee r) \rightarrow{} \neg p)}_{\defeq \psi}
 \wedge \Box (\neg p \rightarrow{} \Box \neg p) \]
 \begin{prooftree}
 	\AxiomC{$ \Box \neg \Box \neg p,
@@ -53,8 +53,8 @@ wird der Kalkül wie farbig markiert durchgeführt.
 \UnaryInfC{$
 	\neg \Box \neg p, \phi, \cm{\neg p}, \psi, \cm{\neg \neg p} \quad | \quad
 \cm{\neg \Box \neg p}, \phi, \neg p, \psi, \cm{\neg \neg \Box \neg p} $}
-\anm{$(clash)$}
-		\UnaryInfC{$\bot$}
+%\anm{$(clash)$}
+%		\UnaryInfC{$\bot$}
 \end{prooftree}
 
 Im letzten Schritt lässt sich auf beide möglichen Resultate der Anwendung der
@@ -66,7 +66,7 @@ damit ein Label erfolgreich ist, ist dieser Label nicht erfolgreich.
 
 
 %%2. Formel TODO:
-Durch iUmformen der zweiten Formel erhält man folgendes:
+Durch Umformen der zweiten Formel erhält man folgendes:
 
 \begin{center}
 	$ \Box \neg(\neg p \wedge (\Box q \wedge \Box r)) \wedge \neg (\Box p \wedge

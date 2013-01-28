@@ -58,18 +58,89 @@ Da für jede Regelanwendung eine erfolgreiche Konklusion existieren muss
 damit ein Label erfolgreich ist, ist dieser Label nicht erfolgreich.
 
 
+Nach Anwendung von Umformungsregeln für Implikation, Diamond, De Morgan'schen
+Regeln, ($\wedge$)-Regeln auf oberster Ebene und Anwendung der ($\neg\neg$)
+Regel des Kalküls wird die Formel wie folgt dargestellt. Anschließend werden die
+Regeln des Kalküls wie farbig markiert angewandt.
 
-%%2. Formel TODO:
-Durch Umformen der zweiten Formel erhält man folgendes:
+\[\ \Box \neg \underbrace{(p \wedge (\Box\neg q \wedge \Box\neg r))}_{\defeq
+	\phi} \wedge \neg (\Box\neg p \wedge
+	\Box\neg\neg p) \wedge \Box \neg (\neg p \wedge \Box\neg p) \wedge \Box\Box(p
+\wedge \neg r) \]
 
-\begin{center}
-	$ \Box \neg(\neg p \wedge (\Box q \wedge \Box r)) \wedge \neg (\Box p \wedge
-	\Box\neg p) \wedge \Box \neg (\neg p \wedge \Box\neg p) \wedge \Box\Box(p
-	\wedge \neg r)$
-\end{center}
 
-Ab jetzt lassen sich die Tableau-Regeln anwenden.
+\begin{prooftree}
+	\AxiomC{$ \Box \neg \phi,
+		\cm{\neg ( \Box \neg p \wedge \Box \neg \neg p )},
+		\Box \neg ( \neg p \wedge \Box \neg p ),
+		\Box \Box ( p \wedge \neg r ) $}
+\anm{$(\neg \wedge)$}
 
+\UnaryInfC{$ \Box \neg \phi,
+	\cm{\neg \Box \neg p} ,
+		\Box \neg ( \neg p \wedge \Box \neg p ),
+		\Box \Box ( p \wedge \neg r ) \quad | \quad
+\Box \neg \phi,
+		\neg \Box \neg \neg p,
+		\Box \neg ( \neg p \wedge \Box \neg p ),
+		\Box \Box ( p \wedge \neg r ) $}
+\anm{$(\neg \Box)$}
+
+\UnaryInfC{$ \neg \phi,
+		\neg \neg p ,
+		\neg ( \neg p \wedge \Box \neg p ),
+		\Box ( p \wedge \neg r ) \quad | \quad
+\Box \neg \phi,
+		\cm{\neg \Box \neg \neg p},
+		\Box \neg ( \neg p \wedge \Box \neg p ),
+		\Box \Box ( p \wedge \neg r ) $}
+\anm{$(\neg \Box)$}
+
+\UnaryInfC{$ \neg \phi,
+	\cm{\neg \neg p} ,
+		\neg ( \neg p \wedge \Box \neg p ),
+		\Box ( p \wedge \neg r ) \quad | \quad
+		\neg \phi,
+		\cm{\neg \neg \neg p},
+		\neg ( \neg p \wedge \Box \neg p ),
+		\Box ( p \wedge \neg r ) $}
+\anm{$(\neg \neg)$}
+
+\UnaryInfC{$ \neg \phi,
+		p ,
+		\cm{\neg ( \neg p \wedge \Box \neg p )},
+		\Box ( p \wedge \neg r )
+		\quad
+		|
+		\quad
+		\neg \phi,
+		\neg p,
+		\neg ( \neg p \wedge \Box \neg p ),
+		\Box ( p \wedge \neg r ) $}
+\anm{$(\neg \wedge)$}
+
+\UnaryInfC{$ \neg \phi,
+		p ,
+		\neg \neg p ,
+		\Box ( p \wedge \neg r )
+		\quad
+		|
+		\quad
+		\neg \phi,
+		p ,
+		\neg \Box \neg p ,
+		\Box ( p \wedge \neg r )
+		\quad
+		|
+		\quad
+		\neg \phi,
+		\neg p,
+		\neg ( \neg p \wedge \Box \neg p ),
+		\Box ( p \wedge \neg r ) $}
+\anm{$(\neg \wedge)$}
+
+
+\end{prooftree}
 
 
 

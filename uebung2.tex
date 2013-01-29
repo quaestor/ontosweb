@@ -1,9 +1,7 @@
 \aufgabe{1}{Atomare Axiomenregel}
 \newcommand{\Tk}{T_\text{komplex}}
 \newcommand{\Ta}{T_\text{atomar}}
-
-\begin{center}
-\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+\angabe{%
 Zeigen Sie, dass statt der in der Vorlesung angegebenen Axiomenregel des aussagenlogischen Tableaukalküls
 $(\phi,\neg\phi,\Gamma/\bot)$ die \emph{atomare Axiomenregel}
 \[
@@ -11,9 +9,7 @@ $(\phi,\neg\phi,\Gamma/\bot)$ die \emph{atomare Axiomenregel}
 \]
 ausreicht. Formal bedeutet dies, dass man durch Induktion über die Struktur von $\phi$ herleitet, dass
 $ \phi,\neg\phi,\Gamma$ im eingeschränkten Kalkül keinen erfolgreichen Zweig hat.
-\end{minipage}}
-\end{center}
-\vspace{0.5cm}
+}
 
 Bezeichne $\Tk$ den ursprünglichen Kalkül mit komplexer Axiomenregel $(\phi, \neg \phi, \Gamma / \bot)$ und $\Ta$ den
 neuen Kalkül mit atomarer Axiomenregel und sei $\#\phi$ die Anzahl der Konnektive der Formel $\phi$.
@@ -72,14 +68,11 @@ Zu zeigen ist, dass $\Ta$ genau dann ein Label $\Gamma$ ablehnt, wenn $\Gamma$ v
 
 \newpage
 \aufgabe{2}{Rekursiver Tableaualgorithmus}
-\begin{center}
-\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+\angabe{%
     Man definiere einen Label $\Gamma$ als \emph{erfolgreich}, wenn jede darauf anwendbare Tableauregel mindestens eine
     erfolgreiche Konklusion hat (warum ist das eine Definition?). Zeigen Sie durch Induktion über die Baumhöhe, dass ein
     Label genau dann erfolgreich ist, wenn er einen erfolgreichen Zweig hat.
-\end{minipage}}
-\end{center}
-\vspace{0.5cm}
+}
 
 Da der Label $\Gamma$ endlich viele Konnektive hat und jede Regel die Anzahl der Konnektive verringert, führen alle
 Kombinationen von Regelanwendungen in endlicher Zeit zur Terminierung. Damit ist der Begriff eines \emph{erfolgreichen}
@@ -123,13 +116,10 @@ Damit ist $\Gamma$ ein erfolgreicher Label.
 
 \newpage
 \aufgabe{3}{Reduktion von BDDs}
-\begin{center}
-\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+\angabe{%
     Geben Sie ein baumförmiges BDD für die Formel $(x \vee y) \wedge (z \vee w)$ an und reduzieren Sie es, so weit
     möglich.
-\end{minipage}}
-\end{center}
-\vspace{0.5cm}
+}
 
 Die Formel $(x \vee y) \wedge (z \vee w)$ kann dargestellt werden als baumförmiges BDD:
 
@@ -220,13 +210,10 @@ wobei die eingehende Kante auf den anderen $z$-Knoten umgebogen wird. Dadurch en
 Nach Entfernen der doppelten terminalen Knoten erhält man den rechten Graphen, das vollständig reduzierte BDD.
 
 \aufgabe{4}{Erfüllbarkeit von BDDs}
-\begin{center}
-\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+\angabe{%
     Geben Sie einen Algorithmus an, der ein (nicht notwendig geordnetes) BDD auf Erfüllbarkeit überprüft, und
     analysieren Sie Laufzeit und Platzverbrauch.
-\end{minipage}}
-\end{center}
-\vspace{0.5cm}
+}
 
 Ein BDD ist erfüllbar, wenn es einen Pfad von der Wurzel $r$ zu einem Terminal mit Label $1$ gibt. Die Existenz eines
 terminalen Knotens mit Label $1$ ist sogar hinreichend:
@@ -238,15 +225,12 @@ $\Rightarrow$ Algorithmus: Durchsuchen der Knotenmenge nach terminalem Knoten mi
 der Länge der Eingabe, der Algorithmus arbeitet ohne Platzoverhead.
 
 \aufgabe{5}{Verstärkung}
-\begin{center}
-\colorbox{Golden}{\begin{minipage}{0.95\textwidth}%
+\angabe{
     Man ändere die Formulierung des Tableaualgorithmus gemäß Aufgabe 2 ab und füge dann die Verstärkungsregel
     (\emph{strengthening}) $\Delta,\Gamma/\Gamma$ hinzu. Zeigen Sie, dass dies die Antworten des Algorithmus nicht
     ändert, d.h., dass im erweiterten System genau dann \glqq erfüllbar\grqq\ geantwortet wird, wenn dies im
     ursprünglichen System der Fall war.
-\end{minipage}}
-\end{center}
-\vspace{0.5cm}
+}
 
 Zu zeigen ist lediglich, dass, wenn der Algorithmus der Algorithmus ohne Verstärkungsregel ein Label akzeptiert, dann
 auch der Algorithmus mit Verstärkungsregel (Induktion 2). Hierzu muss zunächst gezeigt werden, dass der ursprüngliche Algorithmus

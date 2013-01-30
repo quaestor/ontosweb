@@ -30,6 +30,7 @@
 \usepackage{etoolbox}
 \usepackage{bussproofs}
 \usepackage{mathtools}
+\usepackage{colonequals}
 
 % Pretty captions!
 %\usepackage{caption}
@@ -143,10 +144,11 @@ $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand{\defin}[2]{#1 $\sqsubseteq$ #2}
 \newcommand{\ando}{$\sqcap$\hspace{1pt}}
-\newcommand{\kripke}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\kripke}[1]{\ensuremath{\mathfrak{#1}}}
 \newcommand{\relation}[1]{\ensuremath{\mathcal{#1}}}
 \newcommand{\dia}{\Diamond}
 \newcommand{\anm}[1]{\RightLabel{\scriptsize{#1}}}
+\newcommand{\el}{$\mathcal{EL}$}
 
 \author{Ulrich Dorsch, Christoph Rauch, Manuel Zerpies}
 
@@ -157,8 +159,8 @@ $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
 \begin{document}
 \maketitle
 \tableofcontents
-\include{uebung1}
-\stepcounter{blatt}
+%\include{uebung1}
+%\stepcounter{blatt}
 \include{uebung2}
 \stepcounter{blatt}
 \include{uebung3}
@@ -166,4 +168,6 @@ $\mathcal{O}$ntologien im $\mathcal{S}$emantic $\mathcal{W}$eb, WS12/13 \\
 \include{uebung4}
 \stepcounter{blatt}
 \include{uebung5}
+\stepcounter{blatt}
+\include{uebung6}
 \end{document}

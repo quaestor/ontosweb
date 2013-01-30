@@ -1,0 +1,52 @@
+% vim: set filetype=tex:
+
+\aufgabe{1}{Simulation verkehrt}
+\angabe{%
+	Man definiere eine Rückwärtssimulation zwischen Modellen $\kripke{M}_1 =
+	(M_1, R_1, V_1)$ und $\kripke{M}_2 = (M_2, R_2, V_2)$ als eine binäre
+	Relation $S \subseteq M_1 \times M_2$, so dass für alle $x, y$ mit $xSy$
+	gilt
+	\begin{enumerate}
+		\item für jedes Atom $p$ mit $x \in V_1(p)$ gilt $y \in V_2(p)$
+		\item für jedes $y'$ mit $yR_2y'$ existiert $x'$ mit $xR_1x'$ und
+			$x'Sy'$.
+	\end{enumerate}
+	Zeigen Sie, dass, wenn $S$ eine Rückwärtssimulation ist und $\phi$ eine
+	Formel in der durch die Grammatik
+	\begin{center}
+		$ \phi \coloncolonequals p~|~\top~|~\phi_1 \wedge \phi_2~|~\phi_1 \vee
+	\phi_2~|~\Box \phi $
+	\end{center}
+	definierten Menge modaler Formeln, dann $S$ Erfülltheit von $\phi$ bewahrt,
+	d.h. aus $xSy$ und $\kripke{M}_1, x \vDash \phi$ folgt $\kripke{M}_2, y
+	\vDash \phi$.
+}
+
+
+
+
+
+
+
+\newcommand{\ex}{\exists R.}
+\newcommand{\and}{\sqcap}
+
+\aufgabe{2}{Subsumption in \el}
+\angabe{%
+	Wenden Sie den Subsumptionsalgorithmus für \el an, um zu entscheiden, ob
+	folgende Subsumptionen gültig sind:
+\begin{equation}
+	A \and B \and \ex (B \and C) \and \ex ( B \and C
+	\and \ex D)
+	\sqsubseteq
+	A \and \ex (B \and \ex D) \and \ex ( C \and \ex D)
+\end{equation}
+
+\begin{equation}
+	A \and \ex ( B \and \ex C) \and \ex (B \and \ex D)
+	\sqsubseteq
+	A \and \ex (B \and \ex (C \and D))
+\end{equation}
+
+}
+

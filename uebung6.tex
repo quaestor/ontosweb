@@ -47,6 +47,73 @@
 	\sqsubseteq
 	A \and \ex (B \and \ex (C \and D))
 \end{equation}
-
 }
 
+Da jede Kante im Beschreibungsbaum die Relation $R$ darstellt, wird sie der
+Einfachkeit halber weggelassen. \\
+Um zu zeigen, ob eine Subsumption gültig ist, reicht es zu zeigen, dass es
+eine Simulation von der rechten auf die linke Seite des Subsumptionszeichens
+gibt.
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}
+	[edge from parent/.style={->,draw}]
+	\node{A,B}
+		child{node{B,C}}
+		child{node{B,C}
+			child {node{D}}
+		};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}
+	[edge from parent/.style={->,draw}]
+	\node{A}
+		child{node{B}
+			child{node{D}}}
+		child{node{C}
+			child{node{D}}
+		};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+An der Wurzel des rechten Beschreibungsbaums ist nur $A$ erfüllt. Links ist
+zusätzlich noch $B$ erfüllt. Der erste Schritt ist also schon getan. Als
+nächstes kann man links jeden Pfad der rechten Seite abdecken, indem man links
+stets den rechten Zweig wählt. Nach dem ersten Schritt werden im linken
+Beschreibungsbaum sowohl $B$ als auch $C$ erfüllt. Damit ist es egal in welche
+Richtung man im rechten Baum geht, da hier nur eines der beiden Labels erfüllt
+sein muss. Und auch der letzte Schritt zu $D$ ist mit dem rechten Zweig im
+linken Baum zu simulieren. Damit existiert eine Simulation von rechts nach links
+und die Subsumption ist gültig.
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}
+	[edge from parent/.style={->,draw}]
+	\node{A}
+		child{node{B}
+			child{node{C}}}
+		child{node{B}
+			child{node{D}}
+		};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}
+	[edge from parent/.style={->,draw}]
+	\node{A}
+		child{node{B}
+			child{node{C,D}}
+		};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+In beiden Bäumen lässt sich der erste Schritt machen. Allerdings ist der zweite
+Schritt im linken Baum unter dem Gesichtspunkt einer Simulation nicht möglich,
+da entweder nur $C$ oder $D$ erfüllt werden. Der rechte Beschreibungsbaum
+fordert jedoch, dass $C$ und $D$ erfüllt sein müssen. Damit ist diese
+Subsumption ungültig.

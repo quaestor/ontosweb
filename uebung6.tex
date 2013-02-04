@@ -22,8 +22,23 @@
 	\vDash \phi$.
 }
 
-
-
+Die Behauptung lässt sich per Induktion über die Struktur von $\phi$ zeigen:
+Für die atomaren Fälle $\phi = p$ und $\phi = \top$ ist dies trivialerweise erfüllt (I.A.).
+\begin{itemize}
+	\item[$\phi = \phi_1 \wedge \phi_2$] I.V.: Sei die Behauptung bereits für $\phi_1$ und $\phi_2$ gültig.
+		Dann folgt aus $\kripke{M}_1, x \vDash \phi$, dass $\kripke{M}_1, x \vDash \phi_1$ und $\kripke{M}_1, x \vDash \phi_2$. Nach I.V. gilt dann
+		wegen $xSy$ und (1.), dass auch $\kripke{M}_2, y \vDash \phi_1$ und $\kripke{M}_2, y \vDash \phi_2$ gilt und somit
+		$\kripke{M}_2, y \vDash \phi$. 
+	\item[$\phi = \phi_1 \vee \phi_2 $] Analog zu obigem Fall.
+	\item[$\phi = \Box \phi'$] Sei die Behauptung bereits für $\phi'$ gültig (I.V.).
+		Hat $x$ keine Nachfolger ($\Box \phi'$ ist damit trivialerweise erfüllt), so darf auch $y$ keine Nachfolger haben,
+		denn wenn $y$ einen Nachfolger hätte, gilt nach (2.), dass für jeden dieser Nachfolger $y'$ ein $x'$ existieren muss mit $xR_1x'$. Somit erfüllt auch
+		$\kripke{M}_2, y$ trivialerweise $\Box \phi'$.
+		Hat nun $x$ Nachfolger, dann gilt für alle $y'$, Nachfolger von $y$ ($yR_2y'$), dass ein $x'$ existiert mit $xR_1x'$ und $x'Sy'$ (2.). Da dieses $x'$ Nachfolger von
+		$x$ ist gilt dort nach Voraussetzung $\kripke{M}_1, x' \vDash \phi'$; da $x'Sy'$ gilt, folgt nach I.V. dass auch für jedes $y'$ gilt: $\kripke{M}_2, y' \vDash \phi'$.
+		Somit folgt dass $\kripke{M}_2, y \vDash \Box \phi'$ gilt.
+\end{itemize}
+Somit gilt die Behauptung.
 
 
 

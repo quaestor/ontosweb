@@ -64,11 +64,12 @@ Somit gilt die Behauptung.
 \end{equation}
 }
 
-Da jede Kante im Beschreibungsbaum die Relation $R$ darstellt, wird sie der
-Einfachkeit halber weggelassen. \\
+Da jede Kante im Beschreibungsbaum die Relation $R$ darstellt, werden
+entsprechende Kantenlabel der Einfachkeit halber weggelassen. \\
 Um zu zeigen, dass diese Subsumptionen gültig sind, reicht es zu zeigen, dass es
-eine Simulation von $y_1$ nach $x_1$ gibt.
-
+eine Simulation gibt, die jeweils die Punkte $y_1$ und $x_1$ der zugehörigen
+Beschreibungsbäume in Relation stellt (im Folgenden sei für $C \sqsubseteq D$
+jeweils der linke Baum das Modell $\mathcal{I}_C$, der rechte $\mathcal{I}_D$).
 
 \begin{center}
 \begin{minipage}{0.4\textwidth}
@@ -76,10 +77,10 @@ eine Simulation von $y_1$ nach $x_1$ gibt.
   main node/.style={circle,inner sep=2pt,minimum size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
   not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries}]
 
-  \node[main node,label=west:$x_1$,label=east:{A}] (1) {};
-  \node[main node,label=west:$x_{21}$,label=east:{B,C}] (2) [below left of=1] {};
-  \node[main node,label=west:$x_{22}$,label=east:{B,C}] (4) [below right of=1] {};
-  \node[not main node,label=west:$x_{32}$,label=east:{D}] (5) [below of=4] {};
+  \node[main node,label=west:$x_1$,label=east:{$A$}] (1) {};
+  \node[main node,label=west:$x_{21}$,label=east:{$B,C$}] (2) [below left of=1] {};
+  \node[main node,label=west:$x_{22}$,label=east:{$B,C$}] (4) [below right of=1] {};
+  \node[not main node,label=west:$x_{32}$,label=east:{$D$}] (5) [below of=4] {};
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {} (2)
@@ -93,11 +94,11 @@ eine Simulation von $y_1$ nach $x_1$ gibt.
   size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
   not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries}]
 
-  \node[main node,label=west:$y_1$,label=east:{A}] (1) {};
-  \node[main node,label=west:$y_{21}$,label=east:{B}] (2) [below left of=1] {};
-  \node[main node,label=west:$y_{31}$,label=east:{D}] (3) [below of=2] {};
-  \node[main node,label=west:$y_{22}$,label=east:{C}] (4) [below right of=1] {};
-  \node[not main node,label=west:$y_{32}$,label=east:{D}] (5) [below of=4] {};
+  \node[main node,label=west:$y_1$,label=east:{$A$}] (1) {};
+  \node[main node,label=west:$y_{21}$,label=east:{$B$}] (2) [below left of=1] {};
+  \node[main node,label=west:$y_{31}$,label=east:{$D$}] (3) [below of=2] {};
+  \node[main node,label=west:$y_{22}$,label=east:{$C$}] (4) [below right of=1] {};
+  \node[not main node,label=west:$y_{32}$,label=east:{$D$}] (5) [below of=4] {};
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {} (2)
@@ -108,10 +109,9 @@ eine Simulation von $y_1$ nach $x_1$ gibt.
 \end{minipage}
 \end{center}
 
-Die gültigen Simulationen sind $S_1 = \{(y_1 R x_1), (y_{21}, x_{22}), (y_{31},
-x_{32})\}$
-und $S_2 = \{(y_1, x_1),\\ (y_{22}, x_{22}), (y_{32}, x_{32})\}$.
-
+Die geforderte Simulation ist $S = \{(y_1, x_1), (y_{21}, x_{22}), (y_{31},
+x_{32}), (y_{22}, x_{22}), (y_{32}, x_{32})\}$. Die erste Subsumption ist
+hiernach gültig.
 
 \begin{center}
 \begin{minipage}{0.4\textwidth}
@@ -120,11 +120,11 @@ und $S_2 = \{(y_1, x_1),\\ (y_{22}, x_{22}), (y_{32}, x_{32})\}$.
   size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
   not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries}]
 
-  \node[main node,label=west:$x_1$,label=east:{A}] (1) {};
-  \node[main node,label=west:$x_{21}$,label=east:{B}] (2) [below left of=1] {};
-  \node[main node,label=west:$x_{31}$,label=east:{C}] (3) [below of=2] {};
-  \node[main node,label=west:$x_{22}$,label=east:{B}] (4) [below right of=1] {};
-  \node[not main node,label=west:$x_{32}$,label=east:{D}] (5) [below of=4] {};
+  \node[main node,label=west:$x_1$,label=east:{$A$}] (1) {};
+  \node[main node,label=west:$x_{21}$,label=east:{$B$}] (2) [below left of=1] {};
+  \node[main node,label=west:$x_{31}$,label=east:{$C$}] (3) [below of=2] {};
+  \node[main node,label=west:$x_{22}$,label=east:{$B$}] (4) [below right of=1] {};
+  \node[not main node,label=west:$x_{32}$,label=east:{$D$}] (5) [below of=4] {};
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {} (2)
@@ -139,9 +139,9 @@ und $S_2 = \{(y_1, x_1),\\ (y_{22}, x_{22}), (y_{32}, x_{32})\}$.
   size=1pt,fill,=black,draw,font=\sffamily\Large\bfseries},
   not main node/.style={circle,inner sep=2pt,minimum size=1pt,fill=black,draw,font=\sffamily\Large\bfseries}]
 
-  \node[main node,label=west:$y_1$,label=east:{A}] (1) {};
-  \node[main node,label=west:$y_{21}$,label=east:{B}] (2) [below of=1] {};
-  \node[main node,label=west:$y_{22}$,label=east:{C,D}] (4) [below of=2] {};
+  \node[main node,label=west:$y_1$,label=east:{$A$}] (1) {};
+  \node[main node,label=west:$y_{21}$,label=east:{$B$}] (2) [below of=1] {};
+  \node[main node,label=west:$y_{22}$,label=east:{$C,D$}] (4) [below of=2] {};
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {} (2)
@@ -150,8 +150,10 @@ und $S_2 = \{(y_1, x_1),\\ (y_{22}, x_{22}), (y_{32}, x_{32})\}$.
 \end{minipage}
 \end{center}
 
-Die beiden möglichen Simulationen $S_1 = \{(y_1, x_1), (y_{21}, x_{21}), (y_{22},
-x_{31})\}$ und $S_2 = \{ (y_1,  x_1),\\ (y_{21}, x_{22}), (y_{22},
-x_{32})\}$ sind ungültig,
-da sowohl an $x_{31}$ als auch an $x_{32}$ C,D gelten muss, damit die
-Simulation gültig wird.
+Es gibt lediglich zwei Relationen, die für eine Simulation infrage kommen, da
+zwangsläufig einer der beiden Zweige des linken Modells gewählt werden muss.
+Die beiden möglichen Relationen $R_1 = \{(y_1, x_1), (y_{21}, x_{21}), (y_{22},
+x_{31})\}$ und $R_2 = \{ (y_1,  x_1), (y_{21}, x_{22}), (y_{22}, x_{32})\}$
+sind jedoch keine Simulationen, da hierfür sowohl an Punkt $x_{31}$ als auch an
+Punkt $x_{32}$ $C$ \emph{und} $D$ gelten müssten. Folglich ist die zweite
+Subsumption nicht gültig.
